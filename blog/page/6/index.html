@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="The UK TV Guide for Mambo component is basically a XML RPC client thats talks to the XML RPC server here at nodetraveller.com and renders the data it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/blog/page/6/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Webservices/uk-tv-listings-via-xmlrpc.html">UK TV Listings via XMLRPC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-07-12T20:58:58+01:00" pubdate data-updated="true">Jul 12<span>th</span>, 2004</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The UK TV Guide for Mambo component is basically a XML RPC client thats talks to the XML RPC server here at nodetraveller.com and renders the data it gets back in a nice way. The component has been released for a few weeks now and I&rsquo;ve actually been using the service for a long time before that too so its probably a good time to let people know how to access it&hellip;.</p>
+
+<p>Because the UK TV Listings webservice is implemented using <a href="http://www.xmlrpc.com/">XML RPC</a> it means anyone can access it via a XML RPC client. XMLRPC is the technology on which SOAP is based on. This <a href="http://www.xmlrpc.com/directory/1568/implementations">page</a> shows all the available implementations (servers and clients) using several different technologies so if you haven&rsquo;t dabbled with this kind of thing before, thats a good page to start..</p>
+
+<p>Before we gone on, I&rsquo;d like to say thanks because service uses the wonderful data provided by Andrew Flegg over at <a href="http://www.bleb.org/">www.bleb.org</a>, without which I&rsquo;d have no fun working on this project and I&rsquo;d probably be working on something quite boring&hellip;</p>
+
+<p>Anyway, if you want to use it, you&rsquo;re gonna need to know  what it takes and what it gives&hellip;</p>
+
+<p>The URI is :** <a href="http://www.nodetraveller.com/webservices/tvGuide/tvGuideRPCService.php**">http://www.nodetraveller.com/webservices/tvGuide/tvGuideRPCService.php**</a></p>
+
+<h4>Methods :</h4>
+
+<p><strong>ukTvGuide.nodetraveller.com.getChannels(String date)</strong></p>
+
+<ul>
+<li>Returns an array of strings, each of which is a name of a channel, for the specified date. The date format is as always dd/MM/YYYY eg . Xmas day is 25/12/2004.</li>
+</ul>
+
+
+<p><strong>ukTvGuide.nodetraveller.com.getCategories() </strong>&ndash; Returns an array of strings, each of which is a name of a category</p>
+
+<p><strong>ukTvGuide.nodetraveller.com.getChannelListingsByCategory(String category,String date, String timeslot, Int time)</strong> &ndash;  The category parameter should be a value returned by getCategories. Returns an array for each channel requested. Each element within the array represents a listing. The actual structure is shown below.</p>
+
+<p><strong>ukTvGuide.nodetraveller.com.getChannelListings(Array channels,String date, String timeslot, Int time)</strong>  &ndash; The channels array that is passed  should be an array of Strings, each of which is a value returned by getChannels. Returns an array for
+each channel requested. Each element within the array represents a listing. The actual structure is shown below.</p>
+
+<p>The valid timeslot values are as follows: <strong>MORN</strong>, <strong>AFTER</strong>, <strong>EVEN</strong>, <strong>LATE </strong>AND <strong>WHATSONNOW. Each timeslot, except for </strong><strong>WHATSONNOW</strong>, represents a 6 hour timeslot; MORN &ndash; 6am &ndash; noon, AFTER &ndash; noon &ndash; 6pm, EVEN &ndash; 6pm &ndash; midnight and LATE &ndash; midnight &ndash; 6am.</p>
+
+<p>The <strong>WHATSONNOW </strong>value specifies that only the programme that is currently showing should be returned.</p>
+
+<p>The <strong>time </strong>parameter should pass the time in 24 hour format. If the WHATSONNOW value is not used, then the time parameter is ignored.</p>
+
+<h4>TV Listing structure</h4>
+
+<p>The service returns an array of channels and for each channel requested, there are an array of listings within.</p>
+
+<p>The structure of each listing is as follows :</p>
+
+<p>channel &ndash; String &ndash; channel name
+date &ndash; String &ndash; date format dd/mm/YYYY
+title &ndash; String the title of the programme
+description &ndash; String &ndash; the description of the programme
+subtitle &ndash; String &ndash; the subtitle, if any
+type &ndash; String &ndash; some programmes are classified eg Film, Childrens
+start &ndash; String &ndash; start time
+end &ndash; String- end time
+imgUrl &ndash; String &ndash; the url for the channel img</p>
+
+<p>And that&rsquo;s it.  You can see the actual RPC messages <a href="http://www.nodetraveller.com/webservices/tvGuide/tvRPC_Msgs.php">here.</a></p>
+
+<p>If you do make use of it, please let me know as I&rsquo;d like to know if its been used and how. Some of the projects that I&rsquo;d like to see would be a flash client to replace my <a href="http://www.nodetraveller.com/flash/tvGuide/tvGuide.html">soap version</a> and an XUL based client for Mozilla (please!).  A version for mobile phones would be great too. If I had the time I&rsquo;d start work on these myself because 1) I always like to try new tech and 2) I find experimenting with different UIs fun.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Mambo/rss-options-in-mambo.html">RSS Options in Mambo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-30T14:29:24+01:00" pubdate data-updated="true">Jun 30<span>th</span>, 2004</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was a bit disappointed with the standard rss feature in Mambo as it only supports rss 0.91. Suprisingly, there wasn&rsquo;t a component available that outputs the content in any of the other formats so I thought I&rsquo;d give it a go. No point in reinventing the wheel so I made use of an excellent class called <a href="http://www.bitfolge.de/rsscreator-en.html">FeedCreator</a>. It can output in RSS 0.91, 1.0 and 2.0 as well as <a href="http://www.opml.org/">OPML</a> and <a href="http://www.atomenabled.org/">ATOM 0.3</a>.</p>
+
+<p>Also supplied is a module that will display the links. The actual links are configurable, in that you can specify what formats your feeds are in (Take a look on the right). Also you can add custom links and images with the module eg the mamboserver.com link is a custom one.</p>
+
+<p>You can download it at <a href="http://mamboforge.net/projects/rssxt/">mamboforge</a> <del>or from the my downloads section</del></p>
+
+<p>[Update]I&rsquo;ve released a beta version of RSSXT 2. New features include remote blogging and pinging of aggregator sites. You can download it at the <a href="http://mamboforge.net/projects/rssxt/">mamboforge</a> site</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Mambo/uk-tv-guide-component.html">UK TV Guide Component</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2004-06-18T15:00:43+01:00" pubdate data-updated="true">Jun 18<span>th</span>, 2004</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve just completed a component for <a href="http://www.mamboserver.com/">Mambo</a>. As you can probably guess by the name, it retreives and displays the TV and Radio listings for the UK. At the moment, there is a choice of over 60 channels and two ways of displaying the listings; columns and timeline.</p>
+
+<p>I spent a bit more time on the UI than normal but finally I&rsquo;m pleased with it. It works using XML RPC, connecting to my service and then displaying the listings. I hope to post more about the XML RPC service soon but I need to finish off a project before I do&hellip;</p>
+
+<p>Anyway, click the link in the  menu and take a look. You can also download the component <del>here from this site</del> or from <a href="http://mamboforge.net/projects/uktvguide/">mamboforge</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll&#8230;</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

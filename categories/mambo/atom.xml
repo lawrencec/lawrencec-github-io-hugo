@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mambo | Just another Nodetraveller]]></title>
+  <link href="http://blog.nodetraveller.com/categories/mambo/atom.xml" rel="self"/>
+  <link href="http://blog.nodetraveller.com/"/>
+  <updated>2013-05-22T22:55:09+01:00</updated>
+  <id>http://blog.nodetraveller.com/</id>
+  <author>
+    <name><![CDATA[Lawrence Carvalho]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A change...]]></title>
+    <link href="http://blog.nodetraveller.com/Mambo/News/a-change.html"/>
+    <updated>2005-02-01T21:44:40+00:00</updated>
+    <id>http://blog.nodetraveller.com/Mambo/News/a-change</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve moved my blog from <a href="http://www.mamboserver.com">Mambo</a> to <a href="http://www.wordpress.org">Wordpress</a>. Mambo is a great CMS but as a blogging tool, its not quite so mature. I wanted something simple and web standards friendly and wordpress seems to be it. The casualties in this move are the comments and the uk tv guide. I&rsquo;m no longer publishing the component as its a Mambo component. but head on over to <a href="http://www.syntv.com">SynTV</a> for the listings. Fortunately I haven&rsquo;t blogged too much over and I was able to transfer over by good old cut n paste.</p>
+
+<p>Well, there you go&hellip; expect some weird stuff as I play around and hopefully I&rsquo;ll post new content soon&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RSS options in Mambo]]></title>
+    <link href="http://blog.nodetraveller.com/Mambo/rss-options-in-mambo.html"/>
+    <updated>2004-06-30T14:29:24+01:00</updated>
+    <id>http://blog.nodetraveller.com/Mambo/rss-options-in-mambo</id>
+    <content type="html"><![CDATA[<p>I was a bit disappointed with the standard rss feature in Mambo as it only supports rss 0.91. Suprisingly, there wasn&rsquo;t a component available that outputs the content in any of the other formats so I thought I&rsquo;d give it a go. No point in reinventing the wheel so I made use of an excellent class called <a href="http://www.bitfolge.de/rsscreator-en.html">FeedCreator</a>. It can output in RSS 0.91, 1.0 and 2.0 as well as <a href="http://www.opml.org/">OPML</a> and <a href="http://www.atomenabled.org/">ATOM 0.3</a>.</p>
+
+<p>Also supplied is a module that will display the links. The actual links are configurable, in that you can specify what formats your feeds are in (Take a look on the right). Also you can add custom links and images with the module eg the mamboserver.com link is a custom one.</p>
+
+<p>You can download it at <a href="http://mamboforge.net/projects/rssxt/">mamboforge</a> <del>or from the my downloads section</del></p>
+
+<p>[Update]I&rsquo;ve released a beta version of RSSXT 2. New features include remote blogging and pinging of aggregator sites. You can download it at the <a href="http://mamboforge.net/projects/rssxt/">mamboforge</a> site</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ UK TV Guide Component ]]></title>
+    <link href="http://blog.nodetraveller.com/Mambo/uk-tv-guide-component.html"/>
+    <updated>2004-06-18T15:00:43+01:00</updated>
+    <id>http://blog.nodetraveller.com/Mambo/uk-tv-guide-component</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just completed a component for <a href="http://www.mamboserver.com/">Mambo</a>. As you can probably guess by the name, it retreives and displays the TV and Radio listings for the UK. At the moment, there is a choice of over 60 channels and two ways of displaying the listings; columns and timeline.</p>
+
+<p>I spent a bit more time on the UI than normal but finally I&rsquo;m pleased with it. It works using XML RPC, connecting to my service and then displaying the listings. I hope to post more about the XML RPC service soon but I need to finish off a project before I do&hellip;</p>
+
+<p>Anyway, click the link in the  menu and take a look. You can also download the component <del>here from this site</del> or from <a href="http://mamboforge.net/projects/uktvguide/">mamboforge</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ Get your dancing shoes on..  ]]></title>
+    <link href="http://blog.nodetraveller.com/Mambo/get-your-dancing-shoes-on.html"/>
+    <updated>2004-01-24T15:06:35+00:00</updated>
+    <id>http://blog.nodetraveller.com/Mambo/get-your-dancing-shoes-on</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been using an opensource CMS application recently called <a href="http://www.mamboserver.com/">Mambo</a>.</p>
+
+<p>We needed some kind of CMS for our own site and after looking around, weren&rsquo;t really happy with what was out there..</p>
+
+<p>The sites based on *nuke seem so chaotic. But not Mambo. The sites created with Mambo are nicely designed and user friendly. But the admin interface is absolutely brilliant! Its a well designed system with a great community. Theres quite a few templates around which quite nice to look at. Also there are some components and modules around which are actually useful for non-community sites.</p>
+
+<p>If you need a nice CMS and more, take a look&hellip;and prepare to dance&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My javascript testing toolchain - Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="I&rsquo;ve gotten very satisfied with the set of tools I&rsquo;m currently using when
+writing JS tests, so much so that I&rsquo;d thought I&rsquo;d &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/Javascript/My-javascript-testing-toolchain.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">My Javascript Testing Toolchain</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-07T15:42:00+01:00" pubdate data-updated="true">Oct 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve gotten very satisfied with the set of tools I&rsquo;m currently using when
+writing JS tests, so much so that I&rsquo;d thought I&rsquo;d write a blog post about it.</p>
+
+<p>I write my tests either using <a href="http://chaijs.com/">Chai</a> and <a href="http://sinonjs.org/">Sinon</a>
+or <a href="http://pivotal.github.com/jasmine/">Jasmine</a>. I also use a forked
+version of <a href="https://github.com/lawrencec/JSCovReporter">JSCovReporter</a> to show me code coverage information.
+Whilst writing and
+developing the tests I&rsquo;d either run them in a browser (and manually refresh) or via phantomjs.
+This means that most of the time my tests are being tested in either firefox or
+a webkit-based browser. Of course before committing, the tests are checked manually in all browsers in case of cross browser issues.</p>
+
+<p>This last step though is now replaced with a tool called <a href="https://github.com/airportyh/testem">testem</a>.
+Testem is a command line tool that automates the running of your tests in any specified
+useragents and displays the results in the terminal. It&rsquo;ll detect changes in the
+test files and automatically reruns the tests. It can also run the tests in CI
+mode which means the results are output in TAP format from which Jenkins can parse and
+generate reports.</p>
+
+<p>So now, instead of having a browser open whilst writing tests, I run a command like
+this:</p>
+
+<figure class='code'><figcaption><span>[testem simple usage]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>testem -f testem.json
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and windows for Chrome, Safari and Firefox are opened, the tests are run and results
+are displayed (The browsers and tests page(s) are specifed in the testem.json
+file). Alternatively you can also run it headlessly using phantomjs if you don&rsquo;t need a browser.</p>
+
+<p>The results looks like this:</p>
+
+<p><img src="/images/testem-example.png" title="testem example" ></p>
+
+<p>The browser windows are kept open so subsequent changes will trigger the re-run
+of the tests. Though, in this example, only the above browsers were specified, I
+can add other browsers manually just by opening the same url in a different browser.
+At work for instance, where I work on an iMac with 8gigs of memory and have
+access to multiple mobile test devices, I would also have tabs for all the IE&rsquo;s running via
+a vm, iOS simulator and a couple of android phones. So now, rather than wait for Jenkins
+or perform a quick manual check of the tests in each browser before committing,
+I know pretty much straight away if a test fails because of a cross-browser issue.</p>
+
+<p>The icing on the cake is that only a small change to your spec runner files
+is required:</p>
+
+<figure class='code'><figcaption><span>[Add testem support to your test runner page]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- Testem support --&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;#testem&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;script src=&quot;/testem.js&quot;&gt;&lt;/&#39;</span><span class="o">+</span><span class="s1">&#39;script&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s a bit ugly but the conditional is there so there the test page can be
+run manually without testem.</p>
+
+<h2>CI mode</h2>
+
+<p>Running testem in CI mode is done using the &ldquo;ci&rdquo; parameter:</p>
+
+<figure class='code'><figcaption><span>[testem simple usage]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>testem -f testem.json ci -b Chrome
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The results are displayed in TAP format which can be piped to a file which Jenkins
+can be configured to read from. Full configuration of Jenkins can be found on the
+testem <a href="https://github.com/airportyh/testem/blob/master/docs/use_with_jenkins.md">use with jenkins</a>
+documentation page.</p>
+
+<h2>Code Coverage</h2>
+
+<p>I use a forked version of JSCovReporter to generate the coverage report. It&rsquo;s forked
+to remove the dependency on backbone.</p>
+
+<p>In order for JSCovReporter to render the report the tests need to be run against
+pre-instrumented code so when each statement in the files are run they can be counted.
+This is done using <a href="https://github.com/arian/CoverJS">CoverJS</a> like so:</p>
+
+<figure class='code'><figcaption><span>[testem simple usage]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>coverjs ./*.js -o ./instrumented
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above command instruments the specified files and outputs them into an directory
+called instrumented. These files should then be included in the test page in order
+for the code coverage report to be generated correctly.</p>
+
+<h2>Integrated usage</h2>
+
+<p>The test page for my very small micro lib preposterous uses both testem and JSCovReporter
+so should serve as a simple integrated example.</p>
+
+<p>The preposterous <a href="http://preposterous.nodetraveller.com/">project page</a> is a autogenerated composite
+page of the latest version of the project Readme and chaijs test report. There is also a <a href="http://preposterous.nodetraveller.com/index-coverage.html">coverage page</a>
+that includes the code coverage report (click on the file name on the right or scroll down to see the full report).</p>
+
+<p>The source code for both the tests reports (minus the project Readme) can be found in the <a href="https://github.com/lawrencec/preposterous/tree/master/src/tests">test directory</a>
+and shows how to integrate both testem and JSCovReporter into a test runner page.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lawrence Carvalho</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-07T15:42:00+01:00" pubdate data-updated="true">Oct 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/javascript/'>Javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Javascript/creating-js-files-with-rhino-from-json.html" title="Previous Post: Creating js files with Rhino (from JSON)">&laquo; Creating js files with Rhino (from JSON)</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

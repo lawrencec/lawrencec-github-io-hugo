@@ -1,0 +1,15 @@
+/*common*/
+h1 { font-size:149%;}
+ 	div.yui-b { padding-top:1em;}
+	textarea#ta { display:block;margin:0.5em 0;border:1px solid black;}
+
+	p,form,ul { margin:1em}
+	p { background-color:#eee;padding:0.5em;}
+	ol li { list-style:decimal;list-style-position:inside;}
+
+/*hlist*/
+ 	ul.hlist { border:1px solid black;border-bottom:0;text-align:left;padding:0;}
+	ul.hlist li { border-bottom:1px solid black; padding:0.3em; cursor:hand;cursor:pointer;list-style:none;}
+	ul.hlist li.sel { background-color:#ffcc33;color:#fff;}	
+	ul.hlist li.ghost { font-style:italic;background-color:#eee;}
+	ul.hlist li a { color:#000;text-decoration:none;}

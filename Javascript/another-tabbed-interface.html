@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Another Tabbed Interface - Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="This is a rather belated post and is sort of a continuation of my last post about Aspect Oriented Programming. I&rsquo;ve made yet another tabbed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/Javascript/another-tabbed-interface.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Another Tabbed Interface</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-15T21:15:27+01:00" pubdate data-updated="true">May 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is a rather belated post and is sort of a continuation of my last post about <a href="/Javascript/js-fun/">Aspect Oriented Programming</a>. I&rsquo;ve made yet another tabbed interface widgety thing (like the &lsquo;tubes needs another one) that uses AOP to add additonal features. A tabbed interface widget provided a nice problem for me to experiment with AOP. You can see the <a href="/sandbox/moduletabs/standard.html">results</a> which allows tabs in a widget to be draggable and closeable too. Built with a dash YUI goodness of course.</p>
+
+<p>The actual &lsquo;problem&rsquo; wasn&rsquo;t actually anything to do with the core behaviour of a tabbed interface. After all, the mechanics of such a problem is pretty simple; hide one element, show another. No, I wanted to make the tabs draggable and closeable, much like an OS tab that can be seen in Firefox or Eclipse. Using the <a href="http://developer.yahoo.com/yui/">YUI</a> library, making the tab draggable is relatively straight forward but it did result in some duplicated code which I didn&rsquo;t like. That was the &lsquo;problem&rsquo;.</p>
+
+<p>Essentially, it was like this: My original code had two objects, the YAHOO.NT.TabsModule and YAHOO.NT.Tab. The TabsModule was the managing object for each of the Tab objects. If I wanted to make it draggable I need Tab to extend YAHOO.util.DDProxy. No problem there except of course there has to be additonal logic in the Tab object to do so and also manage the dragging &lsquo;n&rsquo; dropping. Subclassing Tab would have worked but again code would be duplicated in those methods that needed the changes. But then you get into the trouble of class trees.  For instance, DraggableTab subclasses Tab and so does Closeable Tab. But what if I wanted a Draggable and Closeable Tab? That&rsquo;d be a little trickier to do while still maintaining some sense of clean code.</p>
+
+<p>The rather clean solution turns out to be AOP. Quickly, AOP allows us to easily add new code to existing code without editing it. It does this by essentially wrapping the original code so that the new code runs &lsquo;before&rsquo;,&lsquo;after&rsquo; or &lsquo;around the original code. These are the so called &#8216;aspects&rsquo;. So it turns out that to make a Tab draggable I&rsquo;d need to add new methods (my own as well as YAHOO.util.DDProxy) as well as fiddle with a few existing Tabs methods:</p>
+
+<p>Here I&rsquo;ve outlined which methods have been aspected (is that the right term?) and what the new code adds to the original.</p>
+
+<ul>
+<li><p>YAHOO.NT.TabsModule.init is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; both adds a new CustomEvent which listens to all existing Tab instances</p></li>
+<li><p>YAHOO.NT.TabsModule.selectTab is before aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to detect to close tab.</p></li>
+<li><p>YAHOO.NT.Tabs.initTab is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; adds new configuration logic, custom event creation</p></li>
+<li><p>YAHOO.NT.Tabs.activateTab and YAHOO.NT.Tabs.deactivateTab are both after aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to show/hide close icon.</p></li>
+</ul>
+
+
+<p>Though, AOP in Javascript certainly isn&rsquo;t new, I really like the relatively clean way its allowed me to separate behaviours without duplicating any code.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lawrence Carvalho</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-15T21:15:27+01:00" pubdate data-updated="true">May 15<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/javascript/'>Javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Javascript/js-fun.html" title="Previous Post: JS Fun">&laquo; JS Fun</a>
+      
+      
+        <a class="basic-alignment right" href="/Javascript/ajaxevent.html" title="Next Post: AjaxEvent">AjaxEvent &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
+ <head>
+  <title>Memento Patttern - Undo Functionality</title>
+ <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.2/build/reset-fonts-grids/reset-fonts-grids.css" />
+ <script type="text/javascript" src="http://yui.yahooapis.com/2.2.2/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+ <script type="text/javascript" src="js/memento.js"></script>
+ <script type="text/javascript" src="js/ActsAsUndoable.js"></script>
+ <script type="text/javascript" src="js/HistoryList.js"></script>
+ <script type="text/javascript" src="js/TextUpdate.js"></script>
+ <script type="text/javascript">
+
+
+
+    var App = function() {
+            var handleUI = function(oMemento) {
+                    var sStatus = oMemento._sStatus;
+
+                    if (sStatus == YAHOO.NT.Caretaker.STATUS_NOT_UNDOABLE_OR_REDOABLE){ //NOT UNDOABLE OR REDOABLE
+                        this.elRedoBut.disabled = this.elUndoBut.disabled=this.elRevertBut.disabled=true;
+                     }
+                    else if (sStatus == YAHOO.NT.Caretaker.STATUS_UNDOABLE){ //ONLY UNDOABLE
+                        this.elRedoBut.disabled=true;
+                        this.elUndoBut.disabled=this.elRevertBut.disabled=false;
+                     }
+                     else if (sStatus == YAHOO.NT.Caretaker.STATUS_REDOABLE){ //ONLY REDOABLE
+                        this.elUndoBut.disabled=true;
+                        this.elRedoBut.disabled=false;
+                     }
+                     else if (sStatus == YAHOO.NT.Caretaker.STATUS_UNDOABLE_AND_REDOABLE){ //UNDOABLE AND REDOABLE
+                        this.elRedoBut.disabled = this.elUndoBut.disabled=this.elRevertBut.disabled=false;
+                     }
+
+                    return false;
+                }
+            return {
+
+                init : function() {
+
+                hl = new YAHOO.NT.UI.HistoryList('hlistCont','textArea'); // this sets up a caretaker group (as its the 1st obj to access it)
+
+
+                //Subscribe to state changes in textArea group. Since tu also subscribes to that group and state is saved (and loaded) from that object, we can handle the changes.
+                YAHOO.NT.CaretakerRegistry.subscribe('textArea','stateSaved',handleUI,this,true);
+
+                //UI Elements
+                elUndoBut = document.getElementById('undoBut');
+                elRedoBut = document.getElementById('redoBut');
+                elSaveBut = document.getElementById('saveBut');
+                elRevertBut = document.getElementById('revertBut');
+                YAHOO.util.Event.on(elUndoBut,'click',function(e) { tu.undo(); YAHOO.util.Event.stopEvent(e);},this);
+                YAHOO.util.Event.on(elRedoBut,'click',function(e) { tu.redo(); YAHOO.util.Event.stopEvent(e);},this);
+                YAHOO.util.Event.on(elSaveBut,'click',function(e) { tu.snapshotText(); YAHOO.util.Event.stopEvent(e);},this);
+                YAHOO.util.Event.on(elRevertBut,'click',function(e) {tu.revert(); YAHOO.util.Event.stopEvent(e);},this);
+
+                tu = new YAHOO.NT.UI.TextUpdate('ta','textArea'); //loads the initial state of the object therefore notifying any listeners of changes
+                YAHOO.NT.CaretakerRegistry.subscribe('textArea','stateLoaded',handleUI,this,true);
+
+
+            }
+
+    }}();
+
+
+YAHOO.util.Event.onDOMReady(App.init);
+ </script>
+ <link href="./css/hlist.css" type="text/css" rel="stylesheet">
+
+ </head>
+ <body>
+ <div id="doc" class="yui-t4">
+       <div id="bd">
+            <div id="yui-main">
+             <div class="yui-b">
+                 <h1>Multi-level Undo</h1>
+                         <p>Enter text into textarea and then click the snapshot button. UI will respond to text changes.
+                            Click on undo and redo buttons or command history to revert changes.
+                            History path can be changed by saving over a previous state. See my post about <a href="http://www.nodetraveller.com/blog/javascript/actasundo/">ActsAsUndoable</a></p>
+                         <form>
+                            <label for="undoBut"><button id="undoBut">Undo</button></label>
+                            <label for="redoBut"><button id="redoBut">Redo</button></label>
+                            <textarea  id="ta" rows="8" cols="80">Initial Text, please change me</textarea>
+                            <label for="revertBut"><button id="revertBut">Revert</button></label>
+                            <label for="saveBut"><button id="saveBut">Snapshot</button></label>
+                         </form>
+             </div>
+          </div>
+          <div class="yui-b">
+                <h2>Command History</h2>
+                <div id="hlistCont" >
+
+                        </div>
+          </div>
+
+       </div>
+    </div>
+ </body>
+</html>

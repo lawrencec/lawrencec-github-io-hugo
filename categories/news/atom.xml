@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: News | Just another Nodetraveller]]></title>
+  <link href="http://blog.nodetraveller.com/categories/news/atom.xml" rel="self"/>
+  <link href="http://blog.nodetraveller.com/"/>
+  <updated>2013-05-22T22:55:09+01:00</updated>
+  <id>http://blog.nodetraveller.com/</id>
+  <author>
+    <name><![CDATA[Lawrence Carvalho]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Howdy..]]></title>
+    <link href="http://blog.nodetraveller.com/News/howdy.html"/>
+    <updated>2006-11-19T12:01:39+00:00</updated>
+    <id>http://blog.nodetraveller.com/News/howdy</id>
+    <content type="html"><![CDATA[<p>Hey.</p>
+
+<p>It&rsquo;s been a while.</p>
+
+<p>Been busy with <a href="http://uk.yahoo.com">work</a>, life and stuff.</p>
+
+<p>But feel like posting again so I&rsquo;ve changed servers and got a temp design up, which will change soon.</p>
+
+<p>So let&rsquo;s see what happens.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A change...]]></title>
+    <link href="http://blog.nodetraveller.com/Mambo/News/a-change.html"/>
+    <updated>2005-02-01T21:44:40+00:00</updated>
+    <id>http://blog.nodetraveller.com/Mambo/News/a-change</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve moved my blog from <a href="http://www.mamboserver.com">Mambo</a> to <a href="http://www.wordpress.org">Wordpress</a>. Mambo is a great CMS but as a blogging tool, its not quite so mature. I wanted something simple and web standards friendly and wordpress seems to be it. The casualties in this move are the comments and the uk tv guide. I&rsquo;m no longer publishing the component as its a Mambo component. but head on over to <a href="http://www.syntv.com">SynTV</a> for the listings. Fortunately I haven&rsquo;t blogged too much over and I was able to transfer over by good old cut n paste.</p>
+
+<p>Well, there you go&hellip; expect some weird stuff as I play around and hopefully I&rsquo;ll post new content soon&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SynTV - Public Beta]]></title>
+    <link href="http://blog.nodetraveller.com/News/syntv-public-beta.html"/>
+    <updated>2004-10-05T16:20:01+01:00</updated>
+    <id>http://blog.nodetraveller.com/News/syntv-public-beta</id>
+    <content type="html"><![CDATA[<p>My latest project www.syntv.com is just about finished and is now out on a public beta.</p>
+
+<p>SynTV provides UK TV listings in syndication formats (RSS 2.0 and ATOM) for use with desktop feed aggregators. Users can generate their own specific categories and searches and site developers are also provided for with support for HTML and Javascript.  In a couple of weeks, I&rsquo;ll also publish the XMLRPC web service.</p>
+
+<p>If you&rsquo;re interested, please check it out and give me some feedback&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I'm back!]]></title>
+    <link href="http://blog.nodetraveller.com/News/im-back.html"/>
+    <updated>2004-04-17T16:24:25+01:00</updated>
+    <id>http://blog.nodetraveller.com/News/im-back</id>
+    <content type="html"><![CDATA[<p>I knew I hadn&rsquo;t posted in a while but I didn&rsquo;t realise it&rsquo;s been almost 3 months! What have I been up to?!</p>
+
+<p>I&rsquo;ve been doing a lot of work with Mambo recently and I like the thing so much I think I&rsquo;m going to be moving the backend of this blog form Movable Type to Mambo. The main reason for this is that I&rsquo;ll need to put up a version of Mambo up anyway to demo the things I&rsquo;ve been working on, so I might as well use it to blog as well. Also any features that Mambo doesn&rsquo;t have or I don&rsquo;t like, I can add it myself, someting I couldn&rsquo;t do quickly with MT as I don&rsquo;t know much perl.</p>
+
+<p>So quite soon, hopefully within two weeks, this site will change quite a bit. After that I should have more time to blog about what I&rsquo;m up to&hellip;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ It's been a while... ]]></title>
+    <link href="http://blog.nodetraveller.com/News/its-been-a-while.html"/>
+    <updated>2004-01-16T16:24:49+00:00</updated>
+    <id>http://blog.nodetraveller.com/News/its-been-a-while</id>
+    <content type="html"><![CDATA[<p>..since I&rsquo;ve posted. I&rsquo;ve been busy with a couple of projects and haven&rsquo;t had much time. These projects were Java and PHP based with pure HTML frontends but could probably be enhanced quite nicely if using Flash. I&rsquo;ll probably add this to my list of things to do with Flash. Lately this list of mine is getting longer; either my creative think tank juices are overflowing or there&rsquo;s never enough time.</p>
+
+<p>Having said, things have eased up somewhat though and I&rsquo;m hoping to squeeze some time in to look at Central. It&rsquo;s been near the top of my list for a while and it looks like fun&hellip;.If I get the time to really get into it, I&rsquo;ll let you know how I get on&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>

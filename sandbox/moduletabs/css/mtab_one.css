@@ -1,0 +1,75 @@
+.hdn {
+	position: absolute;
+	left: -999px;
+	width: 990px;
+}
+
+/** HP Choice sections */
+#bd h2.ynw-sect {margin:1em 0 0.5em 0;clear:both;}
+#bd h2.ynw-sect a{  font-size:121%; color:#999;text-decoration: underline;font-weight:bold; }
+
+.rndbox {
+  background:  url( ../images/rcb-tr.gif  ) no-repeat bottom right;
+  padding-right: 3px;
+  margin-bottom: 5px;
+  margin-top:10px;
+
+
+}
+.rndbox .top {
+  background: #F2F3F5 url(  ../images/rcb-tr.gif  ) no-repeat top right;
+  height: 22px;
+  font-size: 0;
+  margin-right: -3px;
+}
+.rndbox .top DIV {
+  background: url( ../images/rcb-tr.gif  ) no-repeat top left;
+  width: 3px;
+  height: 22px;
+  font-size: 0;
+  
+}
+.rndbox .content {
+  background: url( ../images/rcb-tr.gif ) no-repeat bottom left;
+  padding: 7px 7px 10px 5px;
+  height:10em;
+
+}	
+
+
+
+	
+.mTab ul.tab{float:left; margin:0; padding:0; list-style:none; position:relative; top:-33px; left:0px; width:100%;/*overflow: hidden; height: 2.4em; clip: rect(auto auto 100px auto); */}
+.mTab ul.tab li{float:left; font-family:verdana; display:block; margin-left:0;padding-bottom:6px;}
+.mTab ul.tab li a span{}
+.mTab ul.tab a.tgglr{float:left; display:block; text-decoration:none; color:#003DB8 ; }
+.mTab ul.tab  a.tgglr:visited{color:#003DB8 ; }
+.mTab ul.tab a.tgglr:hover{text-decoration:underline; }
+.mTab ul.tab  a.tgglr span{float:left; display:block; padding:0 4px; font:10px verdana; margin:8px 0 0 0; font-style:normal; color:#003399 ; border-right:1px solid #666; cursor:pointer;cursor:hand;  }
+.mTab ul.tab  LI.last  a.tgglr span  {border-right:0;}
+.mTab ul.tab LI.on{background:url(../images/ptr-tr.gif) bottom center no-repeat; padding-top:1px;}
+
+.mTab ul.tab LI.on a.tgglr{color:#fff; background:#344F72 url(../images/tbon2.gif ) no-repeat; padding-left:3px; }
+.mTab ul.tab LI.on a.tgglr:visited{color:#fff; }
+.mTab ul.tab LI.on a.tgglr:hover{text-decoration:none; }
+.mTab ul.tab LI.on a.tgglr span{background:#344F72 url(../images/tbon2.gif) no-repeat top right; margin:0; padding:8px 7px 5px 4px; border:none; font-weight:bold; color:#fff; }
+.mTab ul.tab LI.last span{border:none; }
+.mTab div { position:absolute; left:-3px;top:30px;display:none;width:39em; }
+
+.mTab div.tggltShow {  display:block;  z-index:1000;padding:5px;	}
+.mTab div.tggltHide {   display:none;}
+.mTab ul.tab div ul li{ float:none;padding-bottom:0;}
+.mTab  ul.tab div { padding-bottom:0;background-color:#fff;  }
+.mTab  ul.tab div li {font-size:85%;}
+.mTab  ul.tab div li.more {	font:77% verdana;margin-top:5px;font-weight:bold;}
+.mTab  ul.tab UL CITE {float:none;}
+.mTab  ul.tab div li CITE { font-family: Verdana;font-size:85%;}
+
+.mTab ul.tab LI.on div UL  LI {float:none;color:black;}
+.mTab  ul.tab div ul {color:black;}
+
+/*http://developer.yahoo.com/ypatterns/pattern.php?pattern=dropinvitation#*/
+.drpInvte { padding-top:2px;}
+
+
+

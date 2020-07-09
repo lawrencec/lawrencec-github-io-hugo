@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title> Flash TvGuide App - Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="Okay, heres the flash client (only 47k!) for the TVguide webservice posted recently. It&rsquo;s quite a fairly simple movie using flash remoting and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/Flash/flash-tvguide-app.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Flash TvGuide App</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T14:53:37+01:00" pubdate data-updated="true">Sep 8<span>th</span>, 2003</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Okay, heres the <a href="http://www.nodetraveller.com/flash/tvGuide/tvGuide.html">flash client</a> (only 47k!) for the TVguide webservice posted recently.</p>
+
+<p>It&rsquo;s quite a fairly simple movie using flash remoting and <a href="http://www.amfphp.org/">amfphp</a>. I used amf to call my tvguide <a href="http://www.nodetraveller.com/archives/000005.html">webservice</a> via SOAP. Instead of having your swf call a specifc flash service, you call a special service which acts like a proxy to SOAP webservices. This service looks like this..</p>
+
+<div><script src='https://gist.github.com/463436.js'></script>
+<noscript><pre><code>// AMFPHP uses by default the PEAR::SOAP
+// library, so you need to define in the
+// gateway not to use that. In this case
+// NuSOAP will be used
+
+// change this based on your amfphp installation
+include_once($_SERVER[&#39;DOCUMENT_ROOT&#39;] . &#39;/flashservices/app/Gateway.php&#39;);
+$gateway = new Gateway();
+$gateway-&gt;usePearSOAP(false);
+$gateway-&gt;service();</code></pre></noscript></div>
+
+
+<p>You connect to this via NetServices..</p>
+
+<div><script src='https://gist.github.com/463437.js'></script>
+<noscript><pre><code>this.netConn = NetServices.createGatewayConnection(&quot;http://www.nodetraveller.com/flashservices/services/WSProxy.php&quot;);</code></pre></noscript></div>
+
+
+<p>Then you specify the webservice you want by providing the endpoint to the getService method..</p>
+
+<div><script src='https://gist.github.com/463439.js'></script>
+<noscript><pre><code>this.service = this.netConn.getService(&quot;http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl&quot;,this);</code></pre></noscript></div>
+
+
+<p>this.service = this.netConn.getService(&ldquo;<a href="http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl">http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl</a>&rdquo;,this);</p>
+
+<p>and then call the webservice method you want&hellip;</p>
+
+<div><script src='https://gist.github.com/463441.js'></script>
+<noscript><pre><code>this.service.getChannels(paramsObj);</code></pre></noscript></div>
+
+
+<p>this.service.getChannels(paramsObj);</p>
+
+<p>The paramsObj is a value object holding any parameters the webservice method expects. When the data comes back you handle it the normal way..</p>
+
+<p>Oh, and I had lots of fun playing about with the datagrid and creating a custom cell for it for the channel logo graphics.</p>
+
+<p>Based on the Model View Architecture which works basically like this for those of you who don&rsquo;t know yet:
+The <strong>Model</strong> is an object that handles the remoting stuff and nothing else. It just connects to remote services and handles the data when it comes in. When the data does come in, it fires of an event to the <strong>View</strong>. The <strong>View</strong> is a listener of the <strong>Model</strong> so when the <strong>Mode</strong>l shouts, the <strong>View</strong> jumps. Now when the user interacts with the app, its the <strong>Controller</strong> that decides what to do; call a method on the <strong>Model</strong> or the <strong>View</strong>. Nice and easy&hellip;MVC ain&rsquo;t completely perfect but its very useful&hellip;</p>
+
+<p>You can see the actionscript files for the <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideModel.as.txt">Model</a></strong>, <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideView.as.txt">View</a></strong> or <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideController.as.txt">Controller</a></strong> or download <a href="http://www.nodetraveller.com/downloads/tvGuide.zip">here </a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lawrence Carvalho</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2003-09-08T14:53:37+01:00" pubdate data-updated="true">Sep 8<span>th</span>, 2003</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/flash/'>Flash</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Webservices/uk-tv-guide-webservice.html" title="Previous Post:  UK TV Guide Webservice  ">&laquo;  UK TV Guide Webservice  </a>
+      
+      
+        <a class="basic-alignment right" href="/Flash/design-patterns-in-flash.html" title="Next Post: Design Patterns in Flash">Design Patterns in Flash &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

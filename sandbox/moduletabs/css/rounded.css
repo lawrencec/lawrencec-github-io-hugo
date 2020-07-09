@@ -1,0 +1,149 @@
+ #yg-nav {
+ margin-top:10px;
+ float:left;
+ width:100%;
+ }
+
+ #yg-nav H2, #hd H3 {
+ /* remove the headers from the visual rendering */
+ position: absolute;
+ left: -999px;
+ width: 990px;
+ }
+
+ #yg-nav LI {
+ float: left;
+ }
+
+ #yg-nav LI A {
+ text-decoration: none;
+ }
+
+ #yg-nav LI A:hover {
+ text-decoration: underline;
+ }
+
+ 
+
+ /* primary navigation rules 
+ * --------------------------------------------------------------------- */
+ #yg-nav UL.pri {
+ /* can be a more complex background image, but must align to the bottom */
+ /* pushes the first tab in */
+ padding-left: 3px;
+ margin-right:1px;
+ *margin-right:0px;
+ float:left;
+ clear:both;
+ }
+
+ #yg-nav .pri LI {
+ background: #EFEFF0 url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/tboff.gif) no-repeat top left;
+ font: bold 77% Verdana;
+ /* separates tabs -- is cumulative with the padding-left on the UL */
+ margin-left: 3px;
+ margin-right: 1px;
+ } 
+
+ #yg-nav .pri LI.here {
+ background: #21334A url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/tbon1.gif) no-repeat top left;
+ }
+
+ #yg-nav .pri LI A, #yg-nav .pri LI STRONG {
+ display: block;
+ /* adjust for different colour schemes */
+ color: #434343;
+ /* distance from the edge of the image to where the text should start;
+ * (adjust for different tab images) */
+ padding-left: 5px;
+ font-weight:bold;
+ }
+
+ #yg-nav .pri LI SPAN {
+ display: block;
+ background: url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/tboff.gif) no-repeat top right;
+ /* distance from the edge of the image to where the text should start;
+ * (adjust for different tab images) */
+ padding:3px 8px 2px 0;
+ /* include these rules for transparent tab bg images */
+ position: relative;
+ right:-2px;
+ }
+
+ #yg-nav .pri LI.here SPAN {
+ background: url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/tbon2.gif) no-repeat top right;
+ /* adjust this for different colour schemes */
+ color: #fff;
+ /* distance from the edge of the image to where the text should start;
+ * (adjust for different tab images) 
+ * NOTE: this should be the height of the background image's bottom
+ * line taller than in the rule above */
+ padding-bottom: 2px;
+ }
+
+ #yg-nav .pri LI.orphan {
+ background: none;
+ font-weight: normal;
+ }
+
+ #yg-nav .pri LI.orphan A {
+ color: #000;
+ /* same top padding as used in the '#yg-nav .pri LI SPAN' rule */
+ padding-top: 3px;
+ }
+
+ #yg-nav .pri LI.sep {
+ float: right;
+ }
+
+ /* secondary navigation rules 
+ * --------------------------------------------------------------------- */
+ #yg-nav UL.sec {
+ background: #21334A url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/subna.gif) top repeat-x;
+ border-bottom: 1px solid #999;
+ padding: 2px 2%;
+ float:left;
+ clear:both;
+ width:96%;
+ min-height: 23px;
+ }
+
+ * html #yg-nav UL.sec { height: 23px; } /* Min-height for IE6 */
+ #yg-nav .sec LI {
+ background: none;
+ font: 77% Verdana;
+ padding: 5px 0px 6px 11px;
+ background: url(http://eur.i1.yimg.com/eur.yimg.com/i/eu/ne/tabs.gif) left no-repeat;
+ }
+
+ #yg-nav .sec LI.first {
+ border-left: none;
+ margin-left: 0;
+ padding-left: 0;
+ background:none;
+ }
+
+ #yg-nav .sec LI A, #yg-nav .sec LI STRONG {
+ padding-left: 0;
+ padding-right:8px
+ }
+
+ #yg-nav .sec LI A STRONG {
+ padding-right:0;
+ }
+
+ #yg-nav .sec STRONG span{
+ color: #fff;
+ }
+
+ #yg-nav .sec LI.here { 
+ color:#fff;
+ }
+
+ #yg-nav .sec LI A {
+ color: #fff;
+ }
+
+ #yg-nav UL.sec LI.here strong {
+ font-weight:bold;
+ }

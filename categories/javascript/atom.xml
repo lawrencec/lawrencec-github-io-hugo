@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | Just another Nodetraveller]]></title>
+  <link href="http://blog.nodetraveller.com/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://blog.nodetraveller.com/"/>
+  <updated>2013-05-22T22:55:09+01:00</updated>
+  <id>http://blog.nodetraveller.com/</id>
+  <author>
+    <name><![CDATA[Lawrence Carvalho]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My javascript testing toolchain]]></title>
+    <link href="http://blog.nodetraveller.com/Javascript/My-javascript-testing-toolchain.html"/>
+    <updated>2012-10-07T15:42:00+01:00</updated>
+    <id>http://blog.nodetraveller.com/Javascript/My-javascript-testing-toolchain</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve gotten very satisfied with the set of tools I&rsquo;m currently using when
+writing JS tests, so much so that I&rsquo;d thought I&rsquo;d write a blog post about it.</p>
+
+<p>I write my tests either using <a href="http://chaijs.com/">Chai</a> and <a href="http://sinonjs.org/">Sinon</a>
+or <a href="http://pivotal.github.com/jasmine/">Jasmine</a>. I also use a forked
+version of <a href="https://github.com/lawrencec/JSCovReporter">JSCovReporter</a> to show me code coverage information.
+Whilst writing and
+developing the tests I&rsquo;d either run them in a browser (and manually refresh) or via phantomjs.
+This means that most of the time my tests are being tested in either firefox or
+a webkit-based browser. Of course before committing, the tests are checked manually in all browsers in case of cross browser issues.</p>
+
+<p>This last step though is now replaced with a tool called <a href="https://github.com/airportyh/testem">testem</a>.
+Testem is a command line tool that automates the running of your tests in any specified
+useragents and displays the results in the terminal. It&rsquo;ll detect changes in the
+test files and automatically reruns the tests. It can also run the tests in CI
+mode which means the results are output in TAP format from which Jenkins can parse and
+generate reports.</p>
+
+<p>So now, instead of having a browser open whilst writing tests, I run a command like
+this:</p>
+
+<p><code>bash [testem simple usage]
+$ testem -f testem.json
+</code></p>
+
+<p>and windows for Chrome, Safari and Firefox are opened, the tests are run and results
+are displayed (The browsers and tests page(s) are specifed in the testem.json
+file). Alternatively you can also run it headlessly using phantomjs if you don&rsquo;t need a browser.</p>
+
+<p>The results looks like this:</p>
+
+<p><img src="/images/testem-example.png" title="testem example" ></p>
+
+<p>The browser windows are kept open so subsequent changes will trigger the re-run
+of the tests. Though, in this example, only the above browsers were specified, I
+can add other browsers manually just by opening the same url in a different browser.
+At work for instance, where I work on an iMac with 8gigs of memory and have
+access to multiple mobile test devices, I would also have tabs for all the IE&rsquo;s running via
+a vm, iOS simulator and a couple of android phones. So now, rather than wait for Jenkins
+or perform a quick manual check of the tests in each browser before committing,
+I know pretty much straight away if a test fails because of a cross-browser issue.</p>
+
+<p>The icing on the cake is that only a small change to your spec runner files
+is required:</p>
+
+<p>``` html [Add testem support to your test runner page]</p>
+
+<!-- Testem support -->
+
+
+<p><script type="text/javascript"></p>
+
+<pre><code>if (location.hash.indexOf('#testem') !== -1) {
+    document.write('&lt;script src="http://blog.nodetraveller.com/testem.js"&gt;&lt;/'+'script&gt;');
+}
+</code></pre>
+
+<p></script>
+```</p>
+
+<p>It&rsquo;s a bit ugly but the conditional is there so there the test page can be
+run manually without testem.</p>
+
+<h2>CI mode</h2>
+
+<p>Running testem in CI mode is done using the &ldquo;ci&rdquo; parameter:</p>
+
+<p><code>bash [testem simple usage]
+$ testem -f testem.json ci -b Chrome
+</code></p>
+
+<p>The results are displayed in TAP format which can be piped to a file which Jenkins
+can be configured to read from. Full configuration of Jenkins can be found on the
+testem <a href="https://github.com/airportyh/testem/blob/master/docs/use_with_jenkins.md">use with jenkins</a>
+documentation page.</p>
+
+<h2>Code Coverage</h2>
+
+<p>I use a forked version of JSCovReporter to generate the coverage report. It&rsquo;s forked
+to remove the dependency on backbone.</p>
+
+<p>In order for JSCovReporter to render the report the tests need to be run against
+pre-instrumented code so when each statement in the files are run they can be counted.
+This is done using <a href="https://github.com/arian/CoverJS">CoverJS</a> like so:</p>
+
+<p><code>bash [testem simple usage]
+$ coverjs ./*.js -o ./instrumented
+</code></p>
+
+<p>The above command instruments the specified files and outputs them into an directory
+called instrumented. These files should then be included in the test page in order
+for the code coverage report to be generated correctly.</p>
+
+<h2>Integrated usage</h2>
+
+<p>The test page for my very small micro lib preposterous uses both testem and JSCovReporter
+so should serve as a simple integrated example.</p>
+
+<p>The preposterous <a href="http://preposterous.nodetraveller.com/">project page</a> is a autogenerated composite
+page of the latest version of the project Readme and chaijs test report. There is also a <a href="http://preposterous.nodetraveller.com/index-coverage.html">coverage page</a>
+that includes the code coverage report (click on the file name on the right or scroll down to see the full report).</p>
+
+<p>The source code for both the tests reports (minus the project Readme) can be found in the <a href="https://github.com/lawrencec/preposterous/tree/master/src/tests">test directory</a>
+and shows how to integrate both testem and JSCovReporter into a test runner page.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Creating js files with Rhino (from JSON)]]></title>
+    <link href="http://blog.nodetraveller.com/Javascript/creating-js-files-with-rhino-from-json.html"/>
+    <updated>2007-11-13T23:41:59+00:00</updated>
+    <id>http://blog.nodetraveller.com/Javascript/creating-js-files-with-rhino-from-json</id>
+    <content type="html"><![CDATA[<p>(This is primarily a note to myself)</p>
+
+<p>I&rsquo;ve been playing with Rhino. Specifically, reading in json objects, turning that into normal, runnable objects and saving that to a file so browsers can run it. More specifically, the code that transforms the JSON to an object in the browser should be exactly the same as the one that runs in Rhino. That way I don&rsquo;t have to maintain two different versions.</p>
+
+<p>I&rsquo;m working on an idea that requires reading in JSON objects and creating objects with methods and properties based on that JSON and could be normally done per request of the page. Obviously, if the JSON is pretty much static, it would be best if we could save the resulting object to a file and reference that file in our pages instead. It would save 1) the request for the JSON file and 2) processing to create the final object. There are two steps to do this.</p>
+
+<ol>
+<li><p> Transform the JSON</p></li>
+<li><p> Saving the object</p></li>
+</ol>
+
+
+<h2>Transform the JSON</h2>
+
+<p>Easy, enough. Iterate through the JSON object, create new object and add methods and properties to it as you see fit. To save it though you need a String representation of the object. Gecko&rsquo;s toSource() method helps there.</p>
+
+<h2>Saving the object</h2>
+
+<p>In Rhino, make use of Java&rsquo;s FileWriter object and save it to the filesystem. If your object is really simple then that&rsquo;s probably it and you&rsquo;ll be able to run the object in your browser. If your final object makes use of closures then you&rsquo;ll get errors, obviously, as the variables the closures have reference to, aren&rsquo;t being created at all when the code is run in the browser. Solution (when run in Rhino) is to turn those methods that use closures into strings and add the variables in via regexp or whatever and then eval it!! Remember, it&rsquo;s only done in Rhino, so it&rsquo;s only done once. One thing to note, you don&rsquo;t have to replace every occurence of that variable name, only the first one (or add a initialisation statement for that variable to the function). Now when the code is written out to file (and read back in by the browser) the variables will have a valid value.</p>
+
+<p>For simple types, like String or numbers, this will work fine. For objects or arrays, you could use toSource() but that just dumps out a object literal of the object at that time and not a reference which is what you really need. The other thing is you&rsquo;ll have a large object dump in the final code which makes the final code much much larger than you need. The solution then is store these objects in an Array or manager object (outside this system) and retrieve them as needed within your final code.</p>
+
+<p>Here&rsquo;s an example:</p>
+
+<p><div><script src='https://gist.github.com/463356.js'></script>
+<noscript><pre><code>.
+.
+o[sMethodName] = function(varA,varB){
+  var f = function(var1){
+   //Use of an objManager to retrieve object we need
+   //varA and varB have no value in Rhino
+   objManager.getObj(var1).method(varA,varB);
+  };
+  //so for rhino
+  if ((typeof this[&quot;load&quot;] == &quot;function&quot;) &amp;&amp; (typeof this[&quot;Packages&quot;] == &quot;function&quot;)) {
+   //so get string version of function
+   var fString = f.toString();
+   //replace variable names with actual variable value.          
+   fString = fString.replace(&#39;varA&#39;, &#39;&quot;&#39; + varA + &#39;&quot;&#39;);
+   fString = fString.replace(&#39;varB&#39;, &#39;&quot;&#39; + varB + &#39;&quot;&#39;);
+   return eval(fString);
+ }
+
+ return f;
+
+}(a,b);
+.
+.
+.</code></pre></noscript></div>
+</p>
+
+<p>There you go. Ugly, more than probably not robust but it&rsquo;s the only way I&rsquo;ve found to do what I need to do for my use case; admittedly probably not a common usage scenario.</p>
+
+<p>Is there a better way?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActsAsUndoable]]></title>
+    <link href="http://blog.nodetraveller.com/Javascript/actasundo.html"/>
+    <updated>2007-07-18T09:04:36+01:00</updated>
+    <id>http://blog.nodetraveller.com/Javascript/actasundo</id>
+    <content type="html"><![CDATA[<p>With web apps becoming more and more like Desktop apps, it seems like user interfaces need be more like desktop user interfaces too. Some of these web apps can have a complex UI and their users need to be able to feel comfortable with it. Of course, making the UI as simple as possible is key, but if a task is relatively complex then the UI will also be relatively complex. With more complex tasks, users can make mistakes or want to change things and if they do, they&rsquo;d appreciate a way of doing so. One way to do that is to provide the user a way of undoing their actions; a way to retreat over their history. Just to make clear, this is something along the lines of a user interaction history, not a browser navigation history. Hence ActsAsUndoable, one way of adding undo functionality to your interactive widgets. (Incidentally while I was writing this post, Aza Raskin posted an <a href="http://www.alistapart.com/articles/neveruseawarning">article</a> on <a href="http://www.alistapart.com">A List Apart</a> about using undo functionality in interaction design, which seems to dovetail well with this post.)</p>
+
+<h2>Design Patterns</h2>
+
+<p>Whenever I code a widget, there&rsquo;s two resources I look to. One is Yahoo!&rsquo;s <a href="http://developer.yahoo.com/ypatterns/">Design Pattern library</a> and the other is Jennifer Tidwell&rsquo;s <a href="http://designinginterfaces.com/">Designing Interfaces</a> book. It&rsquo;s from this book and more specifically the explanation of the <a href="http://designinginterfaces.com/Multi-Level_Undo">Multi-Level Undo pattern</a> that ActsAsUndo is based on.</p>
+
+<p>Basically the Multi-Level Undo pattern says that if users can navigate through their action history and undo their actions, then they can explore their own work paths quickly and safely. The most obvious desktop example of a navigable history is Photoshop&rsquo;s history panel.</p>
+
+<p>The pattern states that these kind of actions should be undoable:</p>
+
+<ul>
+<li><p>Text entry for documents or spreadsheets</p></li>
+<li><p>Database transactions</p></li>
+<li><p>Modifications to images or painting canvases</p></li>
+<li><p>Layout changes &mdash; position, size, stacking order, or grouping in graphic applications</p></li>
+<li><p>File operations, such as deleting or modifying files</p></li>
+<li><p>Creation, deletion or rearrangement of objects such as email messages or spreadsheet columns</p></li>
+<li><p>Any cut, copy, or paste operation</p></li>
+</ul>
+
+
+<p>There are apps like these available on the web and some do have some simple undo/history functionality. These do tend to be only a single step undo and then, only for actions that change and save a new state eg move to trash. But also other actions that users make but perhaps don&rsquo;t yet want (or need) to save should also be undoable and at a multiple level too. So, how do we as implement something like the Multi Level Undo <strong>interaction pattern</strong>? We use the <a href="http://en.wikipedia.org/wiki/Memento_pattern">Memento</a> <strong>software design pattern</strong>.</p>
+
+<h2>Demos</h2>
+
+<p>Two of Jennifer&rsquo;s examples are text entry and stacking order changes. I thought these would be relatively simple examples to use for demo purposes. Here&rsquo;s the <a href="/sandbox/actsasundoable/memento.html">text entry</a> demo and also the <a href="/sandbox/actsasundoable/undo-list.html">stacking order</a> demo. I used the demo of the YUI&rsquo;s sortable list which I hope they don&rsquo;t mind. If you want, take a look at these to see whats going on before reading on.</p>
+
+<h2>Text entry</h2>
+
+<p>The first example I&rsquo;ll cover is the text entry one. It&rsquo;s a simple example of a textarea in which users can enter text and save snaphots. The original class has two properties <strong>el</strong> and <strong>sValue</strong>. <strong>el</strong> represents the textarea and <strong>sValue</strong>, the textarea&rsquo;s value. It has a method called <strong>setText()</strong> whichs sets <strong>sValue</strong> to the value of the textarea.</p>
+
+<p>Finally we have a <strong>snapshotText()</strong> method which calls <strong>setText()</strong>. We wire a button element to this method.
+<div><script src='https://gist.github.com/463367.js'></script>
+<noscript><pre><code>YAHOO.NT.UI.TextUpdate = function(elId,sGroup,sPreviewId) { 
+  this.el = document.getElementById(elId); 
+  this.sValue = this.el.value; 
+} 
+YAHOO.NT.UI.TextUpdate.prototype.setText = function(sValue) { 
+  this.sValue = this.el.value = sValue; 
+} 
+YAHOO.NT.UI.TextUpdate.prototype.snapshotText = function() { 
+  if (this.sValue != this.el.value) {
+    this.setText(this.el.value); 
+  } 
+}</code></pre></noscript></div>
+</p>
+
+<p>We can add undoable functionality by augmenting it with <strong>YAHOO.Acts.as.Undoable</strong>. This adds a <strong>sCaretakerGroup</strong> property and <strong>undo()</strong>,<strong>redo()</strong>,<strong>revert()</strong> and <strong>restore()</strong> methods. All we need to do is subscribe to the &lsquo;stateLoaded&rsquo; event and make a call to <strong>saveState()</strong> of the Caretaker to record the initial state. We can do this in the constructor of out TextUpdate object or a <strong>init()</strong> method if we choose to use one.</p>
+
+<p><div><script src='https://gist.github.com/463449.js'></script>
+<noscript><pre><code>this.sCareTakerGroup = sGroup; 
+YAHOO.NT.CaretakerRegistry.subscribe(this.sCareTakerGroup,&#39;stateLoaded&#39;,this.restore,this,true);
+YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,&#39;New&#39;,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this});
+</code></pre></noscript></div>
+</p>
+
+<p>The first line just sets up a property that allows us to identify a caretaker to manage our states (more on this later).</p>
+
+<p>The second line subscribes to an event called &lsquo;stateLoaded&rsquo; and sets the callback to our <strong>restore()</strong> method.</p>
+
+<p>Then, the third line saves our initial state. We need to do this so the <strong>revert()</strong> method can revert to the initial state. The callback we specify here   depends on your object</p>
+
+<p>So now our TextUpdate class looks like this :</p>
+
+<p><div><script src='https://gist.github.com/463371.js'></script>
+<noscript><pre><code>YAHOO.NT.UI.TextUpdate  = function(elId,sGroup,sPreviewId) { 
+  this.el = document.getElementById(elId); 
+  this.sValue = this.el.value; 
+
+  //Interact with caretaker 
+  this.sCareTakerGroup = sGroup; 
+  YAHOO.NT.CaretakerRegistry.subscribe(this.sCareTakerGroup,&#39;stateLoaded&#39;,this.restore,this,true);
+  YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,&#39;New&#39;,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this}); 
+}
+
+YAHOO.NT.UI.TextUpdate.prototype.setText = function(sValue) { 
+  this.sValue = this.el.value = sValue; 
+} 
+
+YAHOO.NT.UI.TextUpdate.prototype.snapshotText = function() { 
+  if (this.sValue != this.el.value) { 
+     this.setText(this.el.value); 
+    //saves value to caretaker 
+    YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,null,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this}); 
+  } 
+}
+//make undoable
+YAHOO.augment(YAHOO.NT.UI.TextUpdate,YAHOO.Acts.as.Undoable);</code></pre></noscript></div>
+</p>
+
+<p>The last line adds the undoable functionality to the TextUpdate object. (see next code snippet)</p>
+
+<p>But what&rsquo;s all this caretaker stuff? Well, the Memento software design pattern is an established pattern that helps to implement undo functionality. I touched on the Memento pattern in an <a href="/Flash/design-patterns-in-flash.html">earlier post</a> about object-oriented Actionscript.</p>
+
+<p>The Memento pattern has three classes; Originator, Caretaker and Memento. Basically using these three classes, the Memento pattern works likes this:</p>
+
+<p>If an Originator wants its state or some of its state to be undoable or redoable, then it must save its state to a Caretaker. This Caretaker will manage the various states (Mementos) of our Originator. (isn&rsquo;t it lovely terminology?)</p>
+
+<p>Using this as a premise, we can devise a simple &lsquo;framework&rsquo; for adding multi level undo functionality to our apps. We don&rsquo;t need (or want) to create lots of class hierarchy for our apps but the only classes we need to create revolve around the Caretaker object. Each object that we need undo functionality for, we have a corresponding caretaker. To manage multiple Caretaker objects (since perhaps multiple objects need a separate history), we use a CaretakerRegistry singleton object to do so. This allows Caretaker objects to be registered and created, if not done so already. It also acts as proxy to caretaker objects as all calls to Caretakers are made via the CaretakerRegistry. A registry also allows multiple objects to monitor state changes of an Originator. See the HistoryList section for an example of such an object</p>
+
+<p>Interaction is achieved using CustomEvents. Caretaker objects fire &lsquo;stateLoaded&rsquo; and &lsquo;stateSaved&rsquo; events. Originator objects subscribe to the &lsquo;stateLoaded event. Any other object that is interested in the state of our Originator will subscribe to both 'stateLoaded&rsquo; and &lsquo;stateSaved&rsquo; events. Each event passes the Memento object to each listening object.</p>
+
+<p>Everytime the state of our object has changed and needs to be saved, we call the <strong>saveState</strong> method (see line 19) of our object&rsquo;s Caretaker which makes a note of the new state and fires off a &lsquo;stateSaved&rsquo; event.</p>
+
+<p>Here are the methods that ActsAsUndoable adds.</p>
+
+<p><div><script src='https://gist.github.com/463373.js'></script>
+<noscript><pre><code>/**
+ * redo changes
+ */
+ undo : function() {
+	YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup);
+ },
+
+/**
+ * Redo changes
+ */
+ redo : function() {
+	YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup,-1);
+ },
+	
+/**
+ * Revert to initial text value
+ * 
+ */
+revert : function() {
+	YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup,0);
+},
+	
+/**
+ * 
+ * 
+ * @param {Object} oState Object containing callback to call with specified 
+ * arguments and scope. Fields are :
+ * 
+ * {Array} 	oState.args Array of arguments to call callback with
+ * {fn}  		oState.execute Calblack function
+ * {Object}	oState.oScope Object to use as scope for callback
+ */
+restore : function(oState) {
+  if (oState.execute) {
+	oState.execute.apply(oState.oScope,oState.args);	
+  }
+}</code></pre></noscript></div>
+</p>
+
+<p>Our object also has <strong>undo()</strong>,<strong>redo()</strong>,<strong>revert()</strong> methods, all of which call the <strong>loadState()</strong> method of the Caretaker. This, in turn, fires off a &lsquo;stateLoaded&rsquo; event. Because our originating object subscribes to the &lsquo;stateLoaded&rsquo; event it is passed the Memento object, which represents the state of the object that it needs to be undone, redone or reverted to. The listening method of our object that the custom event fires to is called <strong>restore()</strong>. This is the method that sets the state of our object. The <strong>restore()</strong> method is passed an object with three properties. These are <strong>args</strong>,<strong>execute</strong>, and <strong>oScope</strong> and are defined when we save the state via the <strong>saveState()</strong> method. Our <strong>restore()</strong> simply calls the method specified in <strong>execute</strong> passing as args those specified in <strong>args</strong> using <strong>oScope</strong> as the scope for the method.. I restore the state of the object like this (via a method call) rather than simply overwriting some properties with older properties as often some logic needs to be run as well; just resetting the properties probably won&rsquo;t suffice in anything other than a very simple widget). The best way to do that is via existing methods on our originating object. For the pattern heads out there, this way is similar to the <a href="http://en.wikipedia.org/wiki/Command_pattern">command pattern</a> without actually creating Command objects &ndash; the existing methods are the Commands.</p>
+
+<h2>Stacking Order</h2>
+
+<p>The <a href="/sandbox/actsasundoable/undo-list.html">stacking order demo</a> is similar. I rewrote the example to reflect the changes needed to make the reordering done by single method (orderLi). Also I haven&rsquo;t augmented it with ActsAsUndoable as I don&rsquo;t use the undo, redo or revert functionality in the UI. The source for YAHOO.example.DDApp is probably a good example to view if you want to see how to add undoable functionality without using augmentation.</p>
+
+<h2>History List</h2>
+
+<p>The History List object is one that listens to state changes of a given object and renders them in a list. It shows how other objects besides the Originator can monitor changes of state. Clicking on each item in the list, rolls back the state of that object to the state. You just initialise it with the id of the container and the CaretakerGroup that the object you&rsquo;re providing a history for is using.</p>
+
+<p>Each link in the history list is a named anchor. However in the update() method, we stop the Event so the browser doesn&rsquo;t actually add it to its own history. We don&rsquo;t want the act of navigating through the history of our own actions within our task to interfere with the history of our browser.</p>
+
+<p>We can create a new HistoryList object that monitors changes to our object by this :</p>
+
+<p><div><script src='https://gist.github.com/463374.js'></script>
+<noscript><pre><code>hl = new YAHOO.NT.UI.HistoryList(&#39;hlistCont&#39;,&#39;textArea&#39;); </code></pre></noscript></div>
+</p>
+
+<p>The first is the id of an element in which to render the history list. The second is the name of the caretaker group to monitor. The list is rendered to the document and any saves, reverts, undo etc are shown in this list.</p>
+
+<h2>Resources and notes :</h2>
+
+<ul>
+<li><p>The ActsAsUndoable was an interim tongue-in-cheek working name but I kinda like it. The Acts.as namespace is a bit overkill but it fits pretty well and will work out nicely in future things I want to post about.</p></li>
+<li><p>Accessibility &ndash; we should set the tabindex of our textarea or list to -1 and focus() them when a history list item is clicked or pressed. See this <a href="http://juicystudio.com/article/making-ajax-work-with-screen-readers.php">making ajax work with screen readers article</a> from <a href="http://juicystudio.com/">Juicystudio</a>
+*</p></li>
+<li><p>For the textUpdate example I&rsquo;ve used the word &lsquo;snapshot&rsquo; rather than &lsquo;save&rsquo; as &lsquo;save&rsquo; would probably mean save permanently to most people. Another button called save could easily be added that would do a true save via normal form functionality. It could even be done using AJAX and the <a href="http://developer.yahoo.com/yui/history/">Browser History manager</a> from the YUI library, which would add an item to the history list. Having said that, we don&rsquo;t want to confuse user with two histories; browser history and what I call User Interaction History.</p></li>
+<li><p>I used the terms as specified as in the Memento Design Pattern. These aren&rsquo;t the clearest names and I was in two minds of calling Caretaker and CaretakerRegistry, UserActionManager and UserActionManagerRegistry. But I suppose these objects can be used for things other than user actions so I kept the design pattern language.</p></li>
+</ul>
+
+
+<p>You can download the <a href="http://www.nodetraveller.com/downloads/ActsAsUndoable.zip">examples and js files.</a> One of these days I&rsquo;ll make my subversion repo public but for now old fashioned zip files will have to do.</p>
+
+<p>Finally, thanks to Tony Kabalan for being a sound board and inputting some useful ideas.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AjaxEvent]]></title>
+    <link href="http://blog.nodetraveller.com/Javascript/ajaxevent.html"/>
+    <updated>2007-07-16T21:25:57+01:00</updated>
+    <id>http://blog.nodetraveller.com/Javascript/ajaxevent</id>
+    <content type="html"><![CDATA[<p>Tim Huegdon has a great post about a really rather sweet piece of code called <a href="http://nefariousdesigns.co.uk/archive/2007/07/ajaxevent-using-yui-custom-events-with-ajax/">AjaxEvent</a> over at his site, <a href="http://nefariousdesigns.co.uk">nefariousdesigns</a>. Developed with Mark Aidan Thomas, AjaxEvent is an object that wraps around the <a href="http://developer.yahoo.com/yui/connection/">YUI Connection</a> and <a href="http://developer.yahoo.com/yui/event/#customevent">CustomEvents</a> that makes managing multiple, distinct ajax calls really easy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Another Tabbed Interface]]></title>
+    <link href="http://blog.nodetraveller.com/Javascript/another-tabbed-interface.html"/>
+    <updated>2007-05-15T21:15:27+01:00</updated>
+    <id>http://blog.nodetraveller.com/Javascript/another-tabbed-interface</id>
+    <content type="html"><![CDATA[<p>This is a rather belated post and is sort of a continuation of my last post about <a href="/Javascript/js-fun/">Aspect Oriented Programming</a>. I&rsquo;ve made yet another tabbed interface widgety thing (like the &lsquo;tubes needs another one) that uses AOP to add additonal features. A tabbed interface widget provided a nice problem for me to experiment with AOP. You can see the <a href="/sandbox/moduletabs/standard.html">results</a> which allows tabs in a widget to be draggable and closeable too. Built with a dash YUI goodness of course.</p>
+
+<p>The actual &lsquo;problem&rsquo; wasn&rsquo;t actually anything to do with the core behaviour of a tabbed interface. After all, the mechanics of such a problem is pretty simple; hide one element, show another. No, I wanted to make the tabs draggable and closeable, much like an OS tab that can be seen in Firefox or Eclipse. Using the <a href="http://developer.yahoo.com/yui/">YUI</a> library, making the tab draggable is relatively straight forward but it did result in some duplicated code which I didn&rsquo;t like. That was the &lsquo;problem&rsquo;.</p>
+
+<p>Essentially, it was like this: My original code had two objects, the YAHOO.NT.TabsModule and YAHOO.NT.Tab. The TabsModule was the managing object for each of the Tab objects. If I wanted to make it draggable I need Tab to extend YAHOO.util.DDProxy. No problem there except of course there has to be additonal logic in the Tab object to do so and also manage the dragging &lsquo;n&rsquo; dropping. Subclassing Tab would have worked but again code would be duplicated in those methods that needed the changes. But then you get into the trouble of class trees.  For instance, DraggableTab subclasses Tab and so does Closeable Tab. But what if I wanted a Draggable and Closeable Tab? That&rsquo;d be a little trickier to do while still maintaining some sense of clean code.</p>
+
+<p>The rather clean solution turns out to be AOP. Quickly, AOP allows us to easily add new code to existing code without editing it. It does this by essentially wrapping the original code so that the new code runs &lsquo;before&rsquo;,&lsquo;after&rsquo; or &lsquo;around the original code. These are the so called 'aspects&rsquo;. So it turns out that to make a Tab draggable I&rsquo;d need to add new methods (my own as well as YAHOO.util.DDProxy) as well as fiddle with a few existing Tabs methods:</p>
+
+<p>Here I&rsquo;ve outlined which methods have been aspected (is that the right term?) and what the new code adds to the original.</p>
+
+<ul>
+<li><p>YAHOO.NT.TabsModule.init is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; both adds a new CustomEvent which listens to all existing Tab instances</p></li>
+<li><p>YAHOO.NT.TabsModule.selectTab is before aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to detect to close tab.</p></li>
+<li><p>YAHOO.NT.Tabs.initTab is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; adds new configuration logic, custom event creation</p></li>
+<li><p>YAHOO.NT.Tabs.activateTab and YAHOO.NT.Tabs.deactivateTab are both after aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to show/hide close icon.</p></li>
+</ul>
+
+
+<p>Though, AOP in Javascript certainly isn&rsquo;t new, I really like the relatively clean way its allowed me to separate behaviours without duplicating any code.</p>
+]]></content>
+  </entry>
+  
+</feed>

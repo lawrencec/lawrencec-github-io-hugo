@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Aspects Test - YUI Dom</title>
+	<style type="text/css">
+	#guineapig {
+		border:1px solid black;
+		margin:1em;
+	}
+	div.bright {
+		font-size:1.5em;
+	}
+	</style>
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/utilities/utilities.js"></script>
+	<script type="text/javascript" src="js/aspect.js"></script>
+
+	<script type="text/javascript">
+	YAHOO.namespace('YAHOO.NT');
+	YAHOO.NT.trace = function(oTarget) {
+		if (window.console && window.console.group) {
+			for (var p in oTarget) {
+				if (typeof oTarget[p] == 'function') {
+					(function (){
+					var sMName = p;
+					var cnsl = window.console;
+						YAHOO.Abstract.Aspect.advise(oTarget,'around',sMName,[function() {
+								cnsl.group('Entered method %s',sMName);
+								cnsl.log("Received arguments: %o",arguments);
+							},
+							function(rv) {
+								cnsl.log("Returned : %o",rv  || 'zilch');
+								cnsl.log('Exited method %s',sMName);
+								cnsl.groupEnd();
+							return rv;
+						}]);
+					})()
+				}
+			}
+		}
+		else {
+			alert('This example needs Firefox with Firebug installed');
+		}
+	}
+
+	//initialise event handlers for buttons
+	function init() {
+		YAHOO.util.Event.addListener('ss','click',function(e) { YAHOO.util.Dom.setStyle('guineapig','backgroundColor','#ccc')});
+		YAHOO.util.Event.addListener('ac','click',function(e) { YAHOO.util.Dom.addClass('guineapig','bright') });
+		YAHOO.util.Event.addListener('gvw','click',function(e) { var iCW = YAHOO.util.Dom.getViewportWidth();document.getElementById('guineapig').innerHTML+=iCW});
+		YAHOO.util.Event.addListener('gebcn','click',function(e) { var aEls = YAHOO.util.Dom.getElementsByClassName('item','li',document.getElementById('guineapig'));document.getElementById('guineapig').innerHTML+="<p>Found " + aEls.length +" elements with class 'item'</p>"});
+
+		//function log = function
+		YAHOO.NT.trace(YAHOO.util.Dom)
+
+		//
+
+	}
+	YAHOO.util.Event.on(window,'load',init);
+	</script>
+	</head>
+	<body>
+
+	<p>
+		This demo is related to this <a href="http://www.nodetraveller.com/blog/javascript/js-fun/">post</a> about Aspect Oriented Programming (AOP).
+	</p>
+	<p>
+		It requires <a href="http://www.getfirefox.com">Firefox</a> and <a href="http://www.getfirebug.com">firebug</a> to view its output. Click on each of the buttons and view the console output in firebug.
+	</p>
+	<p>	The text displayed is a log of each method in the <a href="http://developer.yahoo.com/yui/">YUI</a> Dom Object as each method is called.It shows received arguments and return values
+	</p>
+
+	<button id="ss">Set Style</button><button id="ac">Add Class</button><button id="gvw">Get Viewport Width</button><button id="gebcn">get Elements By Class Name</button>
+	<div id="guineapig">
+		<ul>
+			<li class="item">Item 1</li>
+			<li class="item">Item 2</li>
+			<li class="item">Item 3</li>
+		</ul>
+
+
+	</div>
+
+	</body>
+</html>

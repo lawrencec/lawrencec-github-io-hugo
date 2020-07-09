@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="A semantic interface means finding information online will be much easier as unrelated results won&rsquo;t appear. Here&rsquo;s a gentle intro to the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/blog/page/4/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Web/semantic-web-right-now.html">Semantic Web - Right Now</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-18T14:25:56+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A semantic interface means finding information online will be much easier as unrelated results won&rsquo;t appear. Here&rsquo;s a  <a href="http://infomesh.net/2001/swintro/">gentle intro to the semantic web</a>.</p>
+
+<p>The semantic web won&rsquo;t be in wide use yet but the University of Southhampton has released an interface to a new semantic web interface called <a href="http://mspace.ecs.soton.ac.uk/">mSpace</a>. They have an example interface searching for classical music which currently is Mozilla only. It is javascript driven and uses xmlhttprequest to retrieve the data. The client source code is even available on <a href="http://mspace.sourceforge.net/">sourceforge</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Javascript/introducing-liveinfo.html">Introducing LiveInfo..</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-14T15:46:41+00:00" pubdate data-updated="true">Feb 14<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Directly evolved from <a href="http://blog.bitflux.ch/wiki/LiveSearch">liveSearch</a>, is a updated version which I&rsquo;m calling <strong>liveInfo</strong>. As can be seen at <a href="http://blog.bitflux.ch/">chregu&rsquo;s blog</a> LiveSearch displays live search results <em>while</em> a user enters the search text. You&rsquo;ve probably seen <a href="http://www.google.com/webhp?complete=1&amp;hl=en">Google Suggest</a> which uses the same technology (XMLHTTPRequest).</p>
+
+<p>One of the coolest things about liveSearch is the keyboard navigation where users, when the input field has the focus, the user can navigate through the results using the up and down keys on the keyboard. Because of the <a href="http://www.nodetraveller.com/blog/?p=12">pageSet script</a> I&rsquo;ve done in the past I initally implemented paging functionality into the original liveSearch script including navigating through the pages with the left and right arrow keys.</p>
+
+<p>I then thought about making it easier to implement something like this on various blogging and CMS systems. This led me to using XML to load config data. As a result, liveInfo has a skinnable, plug-in architecture and as its completely object oriented, more than one liveInfo element can be used on a page. The small PHP framework fully supports XMLRPC (using <a href="http://scripts.incutio.com/xmlrpc/">incutio&#8217; XMLRPC library</a>) and SOAP (using <a href="http://sourceforge.net/projects/nusoap/">nusoap</a> )webservices and should be easily portable to other languages for use in CMS or blogging systems written in that language.</p>
+
+<p>I&rsquo;ve also enabled it to work with opera 7+ as well as IE 5+ and Gecko based browsers. It should also work on Safari and other browsers though I haven&rsquo;t been able to test this. Please report any problems and I&rsquo;ll try and fix it. For browsers that support it, it uses document.importNode to display the data so it should also work on those documents that are <em>true</em> XHTML documents.</p>
+
+<p>You can see it running on this blog. The wordpress search liveInfo element is a simple database based system, while the SynTV Search Listings LiveInfo element is a XMLRPC based service which retrieves search result from <a href="http://www.syntv.com">SynTV</a>. The <a href="http://www.nodetraveller.com/downloads/liveInfo.zip">download </a>comes with a <a href="http://www.nodetraveller.com/liveInfo/liveInfoDemo.php">demo page</a> which also includes a Google the search element which uses Google SOAP API.</p>
+
+<p>The complete feature set can be seen in the following list.</p>
+
+<ul>
+<li><p>Support for more browsers</p>
+
+<ul>
+<li><p>Internet Explorer 5+ (Win)</p></li>
+<li><p>Gecko based browsers</p></li>
+<li><p>Opera 7+</p></li>
+<li><p>Should work with IE Mac, Konqueror etc. Needs testing</p></li>
+</ul>
+</li>
+<li><p>Multiple LiveInfo elements on one page</p></li>
+<li><p>Pageable results (Keyboard navigation via left, right, up and down keys)</p></li>
+<li><p>Support for forms with multiple elements</p></li>
+<li><p>Cacheable Results</p></li>
+<li><p>Dynamic forms</p></li>
+<li><p>Skinnable Results</p></li>
+<li><p>Plugin support (services)</p></li>
+<li><p>Webservices support (via plugins)</p></li>
+</ul>
+
+
+<p>I&rsquo;ve also put up a <a href="http://www.nodetraveller.com/blog/index.php?page_id=34">page describing how liveInfo works</a>  but in short all a plugin writer has to do is write a class extending the liveInfo class or subclass and implement two methods. Then write an XML file denoting config values, cache time, form HTML and results HTML . If needed, the writer can provide a css file too. All the user has to do is extract the plugin into the plugins directory and add a few lines in their page.</p>
+
+<p>Technorati Tags: <a href="http://technorati.com/tag/xmlhttprequest">xmlhttprequest</a> | <a href="http://technorati.com/tag/liveInfo">liveInfo</a> |</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/liveinfo-how-it-works.html">LiveInfo - How It Works</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-14T15:42:03+00:00" pubdate data-updated="true">Feb 14<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>LiveInfo is directly evolved from <a href="http://blog.bitflux.ch/wiki/LiveSearch">Livesearch</a>. If you don’t know what liveSearch is, liveSearch allowed users to search a website while still viewing the current page. The original can be seen <a href="http://blog.bitflux.ch/wiki/LiveSearch">here</a>. Wanting to make use of liveSearch for one of my own projects, I proceeded to make some changes from which evolved LiveInfo. LiveInfo is a framework for multiple, real time, skinnable updatable elements within a web page. You can see LiveInfo in action on my blog where there are two LiveInfo elements. One is the blog search and the other is the UK TV listings (SynTV) search on the side.</p>
+
+<p>From the client side, LiveInfo improves upon the original in the following areas:</p>
+
+<ul>
+<li>Support for more browsers
+
+<ul>
+<li>Internet Explorer 5+ (Win)</li>
+<li>Gecko based browsers</li>
+<li>Opera 7+</li>
+</ul>
+</li>
+<li>Should work with IE Mac, Konqueror etc. Needs testing</li>
+<li>Multiple LiveInfo elements on one page</li>
+<li>Pageable results (Keyboard navigation via left, right, up and down keys)</li>
+<li>Support for multiple element forms</li>
+</ul>
+
+
+<p>Utilising a small backend framework, LiveInfo also provides the following functionality</p>
+
+<ul>
+<li>Cacheable Results</li>
+<li>Dynamic forms</li>
+<li>Skinnable Results</li>
+<li>Plugin support (services)</li>
+<li>Webservices support (via plugins)</li>
+</ul>
+
+
+<p>LiveInfo comes with four services. These are as follows:</p>
+
+<ul>
+<li>Wordpress search &ndash; Searches a wordpress blog</li>
+<li>Google Search &ndash; A simple Google search. Uses Googles SOAP API.</li>
+<li>SynTV Search &ndash; Search UK TV listings using the syntv.com XMLRPC webservice</li>
+<li>SynTV Listings &ndash; Displays UK TV listings using the syntv.com XMLRPC webservice</li>
+</ul>
+
+
+<p>The latest version of liveInfo can be found on my <a href="http://www.nodetraveller.com/blog/index.php?page_id=24">downloads</a> page.</p>
+
+<h2>Installation</h2>
+
+<p>Extract the zip and upload the liveInfo directory to your server. I recommend uploading it to the root directory. Wherever you upload it, edit the liveInfoDir node in the liveInfo/liveInfo.xml file to point to it. The value should be a relative path and must not have an ending /. Any new services should be copied into the services directory and any css files into the css directory. Lastly make sure the cache directory is writable. You’ll need to edit the xml file for each service to suit your install but instructions are given</p>
+
+<h2>How it works</h2>
+
+<p>When a user interacts with a form, using either the XMLHttpRequest object or an iframe depending on browser capability, a request is made to the server.
+Whatever the results the server returns some XML from which the relevant elements are extracted and displayed.</p>
+
+<p>The xml document that is returned by the server is actually an XML document with a html namespace. The reason for this is that the normal method of using innerHTML to rewrite elements won&#8217; work on some browsers that support true XHTML documents (xml files sent with the correct application/xhtml+xml header). The workaround for this is to use the document.importNode method to import nodes from one document into another. Note this compatibilty with true XHTML documents was one of the last features to be put in and hasn’t yet been tested fully on true XHTML documents. I will update when I test more fully.</p>
+
+<h2>Javascript</h2>
+
+<p>The javascript for LiveInfo is object-oriented. The liveInfo object is responsible for extracting the form details, showing and navigating through the results. The liveInfo object utilises the xmlClient object which is responsible for contacting the server and returning the results to the liveInfo object.</p>
+
+<h2>The XMLClient object</h2>
+
+<p>For browsers that can make use of the XMLHttpRequest object, the xmlClient simply instantiates the XMLHttpRequest object and sends the request through. For those browers that don&#8217; have have XMLHttpRequest capability, it uses iframes. Unfortunately, its not easy to detect when a page has finished loading within an iframe so we check for a close tag for a specifed tagName which we call a closureNode (also the root node). When we encounter this, we extract and return the results.</p>
+
+<p>The LiveInfo Object
+The LiveInfo object is really quite customisable. There a few other elements besides the actual results to display. There is a title element, a status element to display information, the page controls and other UI elements. The methods available to customise different aspects of the liveInfo page element.</p>
+
+<p>The constructor for the object takes four parameters. The first is the url for the liveinfo.php. The second and third are the service name and operation name respectively. The last parameter is the name or id of the nominated form element that is to trigger the liveInfo display. There can be more than one element that triggers liveInfo but only one can be the nominated element. The nominated element is also checked for text input if it is an text field or that a choice is selected if a select element.</p>
+
+<p>The status text that is displayed on various events (search, error, progress,result) is fully customisable and is based on using a token within a string which is replaced with the required value. This allows a degree of support for other languages. The default token is &ldquo;?&rdquo; but this can be changed with the <strong>setStatementToken</strong> method. There are four statements and these can be changed via the <strong>setSearchStatement</strong>, <strong>setErrorStatement</strong>, <strong>setProgressStatement</strong> and <strong>setResultStatement</strong> methods.</p>
+
+<p>Like the original, the results are navigable via the keyboard but this can be turned of via the <strong>setActivateKeys</strong> method.</p>
+
+<p>The amount of time (in secs) the results are shown before automatically disappearing can be changed from the default of 5 seconds using the <strong>setDisplayTimeout</strong> method.</p>
+
+<p>Debugging can be turned on or off via the <strong>setDebug</strong> method</p>
+
+<p>When a user hits the return key, the form defaults to submitting the form to the required page. This behaviour can be turned off with the <strong>setSubmit</strong> method.</p>
+
+<p>We can also add a custom method that is called whenever the liveInfo is triggered but before the request is sent. An example of why we might want to do this is to sent the field of a hidden value to something depending on the value of others form elements. To add this custom method we use the <strong>addOnTriggerMethod</strong> which takes a function as a parameter.</p>
+
+<p>The default validation method in liveInfo simply checks that text is entered in text field elements and that at least one option is selected for select elements. You can replace this with a custom validation method using the <strong>replaceValidateMethod</strong> method. Like addOnTriggerMethod, this takes a function as a parameter.</p>
+
+<p>Examples of calling these methods can be seen below:</p>
+
+<div><script src='https://gist.github.com/463398.js'></script>
+<noscript><pre><code>setStatementToken(&quot;|&quot;);
+setSearchStatement(&quot;custom searching for msg |&quot;);
+setErrorStatement(&quot;Custom error msg: |&quot;);
+setProgressStatement(&quot;Streaming data...|&quot;);
+setResultStatement(&quot;Displaying items | to | out of |&quot;);
+setActivateKeys(false);
+setDisplayTimeout(10);
+setDebug(true);
+setSubmit(false);
+addOnTriggerMethod(function()  { 
+            if (document.getElementById(&quot;synTVgetSearch_timeslot&quot;).value!=&quot;WHATSONNOW&quot;)
+                document.getElementById(&quot;synTVgetSearch_time&quot;).value=0;
+            else {
+                date = new Date();
+                var hours = date.getHours();
+                var mins = date.getMinutes();
+                hours = (hours &lt; 10) ? &#39;0&#39; + hours : hours;
+                mins = (mins &lt; 10) ? &#39;0&#39; + mins : mins;
+                document.getElementById(&quot;synTVgetSearch_time&quot;).value=hours+&quot;&quot;+mins;
+            }
+        });
+replaceValidateMethod(function() {
+  //validation js here
+});</code></pre></noscript></div>
+
+
+<h2>Framework</h2>
+
+<p>The framework is currently coded in PHP but it should be easily ported to other languages.</p>
+
+<p>The plugin architecture is based on an abstract class called liveInfo. This class and all plugins (services) have an associated xml file which defines configuration values. The liveInfo.xml file contains default configuration values for the system. The xml files for services can override the values in the default xml file. For instance, the liveInfoContainer node contains the html (div container) that displays the results and pagecontrols. This can be used by all services or a service can have a liveInfoContainer node in its xml file which is used instead. This is what makes liveInfo skinnable. Every service also has an associated class which is a subclass of the liveInfo class.</p>
+
+<p>The best way to describe how liveInfo is to use an example. The next two sections describe how to put a liveInfo element on a page and how to write a service.</p>
+
+<h2>Putting liveInfo on your page</h2>
+
+<p>We&rsquo;ll use the google service as an example. The google service displays results from <a href="http://www.google.com">Google</a>.</p>
+
+<p>Inside the head section of your page or template, put the following bit of php</p>
+
+<div><script src='https://gist.github.com/463403.js'></script>
+<noscript><pre><code>
+include_once(&#39;&lt;path&gt;liveInfo.php&#39;);
+$liveInfoMan = liveInfoManager::getLiveInfoManager();
+$liveInfoMan-&gt;addService(&#39;google&#39;,&#39;Search&#39;);
+//output a string of all the css link tags for all the services
+echo $liveInfoMan-&gt;getClientsCode(&quot;css&quot;);
+//output a string of all the js for all the services
+$jsCode  = $liveInfoMan-&gt;getClientsCode(&quot;js&quot;);
+</code></pre></noscript></div>
+
+
+<p>Replace &lt;path&gt; with the install path of LiveInfo in line 2. Line 3 instantiates the LiveInfoManager object. This object is responsible for managing the liveInfo elements that are on the page. Remember, its possible to have more than one. We add the service that we want via the addService method in line 4. The addService method takes two parameters; serviceName and opName. In this case the serviceName is &ldquo;google&rdquo; and the opName is &ldquo;Search&rdquo;. If you have other services, you would add them here. Each service has a associated css file and line 6 outputs the css link tag for each service. Line 7 stores the javascript object creation code into the $jsCode variable.</p>
+
+<p>Also in the head section we need to load the js files and create the function that is called when the document has loaded. This function creates all the liveInfo objects for each of the services on the page</p>
+
+<div><script src='https://gist.github.com/463405.js'></script>
+<noscript><pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;[path]js/xmlclient.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;[path]js/liveinfo.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;[path]js/onload.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;&lt;!--//--&gt;&lt; ![CDATA[//&gt;&lt;!--
+    function liveInfoServices() {
+         &lt;?php echo $jsCode; ?&gt;
+    }
+//--&gt;&lt; !]]&gt;
+&lt;/script&gt;</code></pre></noscript></div>
+
+
+<p>Replace [path] with the path of your liveinfo install. The $jsCode is the javascript that inits the liveInfo objects for each element on the page. It would look like this :</p>
+
+<div><script src='https://gist.github.com/463407.js'></script>
+<noscript><pre><code>wordpressSearch = new liveInfo(&quot;http://www.nodetraveller.com/liveInfo/liveInfo.php&quot;,&quot;wordpress&quot;,&quot;Search&quot;,&quot;s&quot;);
+wordpressSearch.init();
+wordpressSearch.setSubmit(true);</code></pre></noscript></div>
+
+
+<p>Now within your page or template, wherever you want, you can output the form and result HTML with the following:</p>
+
+<div><script src='https://gist.github.com/463410.js'></script>
+<noscript><pre><code>echo $liveInfoMan-&gt;getClientCode(&quot;google&quot;,&quot;Search&quot;,&quot;form&quot;);
+echo $liveInfoMan-&gt;getClientCode(&quot;google&quot;,&quot;Search&quot;,&quot;resultsHTML&quot;);
+</code></pre></noscript></div>
+
+
+<p>And that&rsquo;s it. The actual form and html is actually defined in the service xml, which is what we&rsquo;ll look at next.</p>
+
+<h2>A Service</h2>
+
+<p>Default values are stored in liveInfo.xml</p>
+
+<div><script src='https://gist.github.com/463411.js'></script>
+<noscript><pre><code>&lt;liveInfo&gt;
+        &lt;liveInfoDir&gt;/liveInfo&lt;/liveInfoDir&gt;
+    &lt;cssLink&gt;http://yourdomain.com/liveInfo/css/liveInfo.css&lt;/cssLink&gt;
+        &lt;cacheTTL&gt;3600&lt;/cacheTTL&gt;
+    &lt;liveInfoContainer&gt;
+    &lt;![CDATA[
+    &lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfo&quot; class=&quot;liveInfo&quot; &gt;
+    &lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoStatus&quot; class=&quot;liveInfoStatus&quot;&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoClose&quot; class=&quot;liveInfoClose&quot; onclick=&quot;[&lt;infoName&gt;][&lt;opName&gt;].hideLiveInfo();&quot; title=&quot;Close&quot;&gt;X&lt;/a&gt;     
+        &lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoPageControls&quot; class=&quot;liveInfoPageControls&quot;&gt;
+            &lt;a id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoNext&quot;  class=&quot;liveInfoNext&quot; onclick=&quot;[&lt;infoName&gt;][&lt;opName&gt;].next()&quot; title=&quot;Next results&quot; &gt;&amp;raquo;&lt;/a&gt;
+            &lt;a id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoPrev&quot; class=&quot;liveInfoPrev&quot; onclick=&quot;[&lt;infoName&gt;][&lt;opName&gt;].previous();&quot; title=&quot;Previous results&quot; &gt;&amp;laquo;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoTitle&quot; class=&quot;liveInfoTitle&quot;&gt;[&lt;infoName&gt;]&lt;/div&gt;&lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoStatusText&quot; class=&quot;liveInfoStatusText&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoResults&quot; class=&quot;liveInfoResults&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;]]&gt;
+    &lt;/liveInfoContainer&gt;
+&lt;/liveInfo&gt;</code></pre></noscript></div>
+
+
+<p>The liveInfoDir points to the install directory of liveInfo. This is used by the js liveInfo object. The cacheTTL node defines the default time in seconds to cache the service. This can be overridden by a service. The cssLink points to the location of the default css stylesheet. This can also be overridden by a service. Also overrideable by a service is the liveInfoContainer node. This defines the HTML that is displayed when results are shown. The [&lt;infoname&gt;][&lt;opname&gt;] is used as placeholders and is replaced by the serviceName and opName in the final output on a page eg googleSearch. The structure of this node can change but note that the event handlers, id and class names should be the same. You should be able to add new elements also.</p>
+
+<p>The google service xml looks like this:</p>
+
+<div><script src='https://gist.github.com/463413.js'></script>
+<noscript><pre><code>&lt;liveInfoProvider&gt;
+    &lt;name&gt;Google&lt;/name&gt;
+    &lt;description&gt;you need a description?!&lt;/description&gt;
+    &lt;link&gt;http://www.google.com&lt;/link&gt;
+    &lt;cacheTTL&gt;3600&lt;/cacheTTL&gt;
+    &lt;key&gt;Use your own google key&lt;/key&gt;
+    &lt;q&gt;&lt;/q&gt;
+    &lt;start&gt;&lt;/start&gt;
+    &lt;maxResults&gt;10&lt;/maxResults&gt;
+    &lt;filter&gt;true&lt;/filter&gt;
+    &lt;safeSearch&gt;false&lt;/safeSearch&gt;
+    &lt;restrict&gt;&lt;/restrict&gt;
+    &lt;lr&gt;&lt;/lr&gt;
+    &lt;liveInfoOperations&gt;
+        &lt;liveInfoOperation&gt;
+            &lt;liveInfoOperationName&gt;Search&lt;/liveInfoOperationName&gt;
+            &lt;liveInfoDescription&gt;Get Search Results&lt;/liveInfoDescription&gt;
+            &lt;client&gt;
+                &lt;liveInfoForm&gt;
+                    &lt;![CDATA[&lt;form onsubmit=&quot;return [&lt;infoName&gt;][&lt;opName&gt;].submit()&quot;  id=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoForm&quot; class=&quot;[&lt;infoName&gt;][&lt;opName&gt;]_liveInfoForm&quot; method=&quot;get&quot; action=&quot;./&quot;&gt;
+&lt;input type=&quot;text&quot; id=&quot;googlesearch&quot; size=&quot;15&quot; onkeypress=&quot;[&lt;infoName&gt;][&lt;opName&gt;].execute()&quot; /&gt;
+&lt;/form&gt;]]&gt;
+                &lt;/liveInfoForm&gt;
+                &lt;liveInfoJS&gt;
+                &lt;![CDATA[
+        [&lt;infoName&gt;][&lt;opName&gt;]= new liveInfo(&quot;[&lt;liveInfoURL&gt;]&quot;,&quot;[&lt;infoName&gt;]&quot;,&quot;[&lt;opName&gt;]&quot;,&quot;googlesearch&quot;);
+[&lt;infoName&gt;][&lt;opName&gt;].init();              
+]]&gt;
+                &lt;/liveInfoJS&gt;
+                &lt;cssLink&gt;http://yourdomain.com/css/googleLiveInfo.css&lt;/cssLink&gt;
+            &lt;/client&gt;
+        &lt;/liveInfoOperation&gt;
+    &lt;/liveInfoOperations&gt;
+&lt;/liveInfoProvider&gt;</code></pre></noscript></div>
+
+
+<p>The name, description and link nodes are there for informational purposes about the service. On line 6 we can see that this service is set to cache for only 15 mins. The <strong>key</strong>, <strong>q</strong>, <strong>lr</strong>, <strong>start</strong>, <strong>maxresults</strong>, <strong>filter</strong>, <strong>safesearch</strong> and <strong>restrict</strong> nodes are google webservice parameters. If a service needs service specific config values, they can be defined here in the xml and the service will pick it up.</p>
+
+<p>Now every service has at least one operation. Here we define one called search. Google&rsquo;s webservice also provides a spelling operation. If we wanted to, we would have another <strong>liveOperation</strong> node which defines the information needed for that operation. The important nodes here are the <strong>liveInfoOperationName</strong> and the <strong>client</strong> nodes. The <strong>liveInfoOperationName</strong> identifies the operation and is used by the <strong>liveInfoManager</strong> to load up the correct service operation. The <strong>client</strong> node has a <strong>liveInfoForm</strong> node which is where the form for the service is defined. To note here is the keypress event handler event for the element that is to trigger the liveInfo. This event can be used on other elements if the form has more than one element. The <strong>liveInfoJS</strong> node contains the javascript code to create the liveInfo js object. Any parameters or customisation is set here. See the Javascript section for more information. Finally the <strong>cssLink</strong> node defines the link to the stylesheet for this service.</p>
+
+<p>It&rsquo;s possible that a form element is dynamic. For instance, a select element&rsquo;s options are loaded from the database. In this case, we can specify a method to call which will output the element. To do this we put the following in the relevant place. An example</p>
+
+<div><script src='https://gist.github.com/463415.js'></script>
+<noscript><pre><code>&lt;opCall&gt;getDays&lt;/opCall&gt;</code></pre></noscript></div>
+
+
+<p>When the service encounters the node, it calls the getDays method and inserts the return value in the form</p>
+
+<h2>The PHP</h2>
+
+<p>An abstract class called liveInfo defines the interface which any service must implement. It also provides some helper methods for outputting xml, debug info and caching methods. The constructor looks like this.</p>
+
+<div><script src='https://gist.github.com/463416.js'></script>
+<noscript><pre><code>class googleLiveInfo extends soapLiveInfo {
+    var $serviceName = &quot;google&quot;;
+
+    function googleLiveInfo($opName=null) {
+        parent::soapLiveInfo();
+        $this-&gt;opName = $opName;
+        parent::initialise();
+    }</code></pre></noscript></div>
+
+
+<p>The Google webservice is a soap service. Besides the liveInfo abstract class, the liveInfo framework is supplied with two subclasses called rpcLiveInfo and soapLiveInfo. These subclasses include the required library for using XMLRPC or SOAP. So if your service uses XMLRPC or SOAP you should subclass one of these methods. If not, then you should just subclass the liveInfo class. Its important that you do this and call the parent constuctor (see line 5). Calling the parent constructor, loads the default liveInfo.xml then calling the initialise() method, loads the service&rsquo;s xml file initialising the object with the data in the xml file</p>
+
+<div><script src='https://gist.github.com/463417.js'></script>
+<noscript><pre><code>function getLiveInfo($query) {
+        if ($this-&gt;debug) 
+            $this-&gt;dumpVariable(&#39;RECEIVED QUERY PARAMS: &#39;,$query);
+        # Set google parameters
+        $parameters = array(
+          &#39;key&#39;=&gt;$this-&gt;key,
+          &#39;q&#39; =&gt; $query[&#39;googlesearch&#39;],
+          &#39;start&#39; =&gt; &#39;0&#39;,
+          &#39;maxResults&#39; =&gt; &#39;10&#39;,
+          &#39;filter&#39; =&gt; $this-&gt;filter,
+
+          &#39;restrict&#39; =&gt; $this-&gt;restrict,
+          &#39;safeSearch&#39; =&gt; $this-&gt;safeSearch,
+          &#39;lr&#39; =&gt; $this-&gt;lr,
+        );
+        $cache = $this-&gt;getCache($this-&gt;serviceName.$this-&gt;opName);
+        switch($this-&gt;opName) {
+            case &quot;Search&quot;:
+                //if not using a cache use this line
+                                // $result = $this-&gt;getSearch($parameters);
+                                $result = $cache-&gt;call(array(&amp;$this,&#39;getSearch&#39;),$parameters);
+                break;
+        }
+        if ($this-&gt;debug) {
+            $this-&gt;dumpVariable(&#39;LIVEINFO RESULT (XML) : &#39;,$result);
+        }
+        if($this-&gt;debug)
+            return $this-&gt;packageResult($this-&gt;packageDebug($this-&gt;debugStr).$result);
+        else return $this-&gt;packageResult($result);
+}</code></pre></noscript></div>
+
+
+<p>When a request from a liveInfo page element, its the getLiveInfo that is called. If cache is needed we get a cache object by calling the getCache method, then we call the getSearch method via the cache object&#8217; call method. If a cache is not needed, then we would just call the getSearch method directly. Then the results are packaged for return. Note also debug data is also added if debug mode is on. The getSearch method sets up the SOAP call, contacts the webservice and passes the results to the renderResults method which returns them nicely formated into an unordered list.</p>
+
+<div><script src='https://gist.github.com/463418.js'></script>
+<noscript><pre><code>function renderResults($results) {
+        if ($this-&gt;debug)
+            $this-&gt;dumpVariable(&#39;LIVEINFO RESULTS (RAW) : &#39;,$results);
+        $channels = $results;
+        $html =&#39;&lt;ul class=&quot;liveResults&quot;&gt;&#39;;
+    foreach ( $results[&#39;resultElements&#39;] as $result ) {
+        $title = $result[&#39;title&#39;] ? $result[&#39;title&#39;] : &#39;no title&#39;;
+        //opera 7 has problems with brs in snippet field (??)
+        $snippet = str_replace(&quot;&lt;br&gt;&quot;,&quot;&quot;,$result[&#39;snippet&#39;]);
+        $url = str_replace(&#39;&amp;&#39;,&#39;&amp;amp;&#39;,$result[&#39;URL&#39;]);
+        $html .=&#39;&lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;&#39;.$result[&quot;URL&quot;].&#39;&quot; target=&quot;_blank&quot; title=&quot;&#39;.$url.&#39;&quot;&gt;&lt;strong&gt;&#39;.$title.&#39;&lt;/strong&gt;&lt;br /&gt;&#39;.$snippet.&#39;&lt;/a&gt;&lt;/li&gt;&#39;;
+    }
+    $html.=&quot;&lt;/ul&gt;&quot;;
+    return $html;
+    }</code></pre></noscript></div>
+
+
+<p>The resulting document for a search for &ldquo;news&rdquo; looks like this : (debug mode turned off)</p>
+
+<div><script src='https://gist.github.com/463419.js'></script>
+<noscript><pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;
+&lt;liveInfo&gt;
+    &lt;liveInfoResult id=&quot;liveInfoResult&quot;&gt;
+        &lt;ul class=&quot;liveResults&quot;&gt;&lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.cnn.com/&quot; target=&quot;_blank&quot; title=&quot;http://www.cnn.com/&quot;&gt;&lt;strong&gt;CNN.com&lt;/strong&gt;&lt;br /&gt;&lt;b&gt;...&lt;/b&gt; MORE &lt;b&gt;NEWS&lt;/b&gt;, Most Popular. &lt;b&gt;...&lt;/b&gt; BUSINESS at CNN/Money, Business &lt;b&gt;News&lt;/b&gt;. STOCK/FUND QUOTES: enter symbol. MARKETS: 5:16pm ET, 02/03. DJIA, -3.69, 10,593.10, -0.03. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://news.bbc.co.uk/&quot; target=&quot;_blank&quot; title=&quot;http://news.bbc.co.uk/&quot;&gt;&lt;strong&gt;BBC &lt;b&gt;NEWS&lt;/b&gt; | &lt;b&gt;News&lt;/b&gt; Front Page&lt;/strong&gt;&lt;br /&gt;Visit BBC &lt;b&gt;News&lt;/b&gt; for up-to-the-minute &lt;b&gt;news&lt;/b&gt;, breaking &lt;b&gt;news&lt;/b&gt;, video, audio and feature stories. BBC &lt;b&gt;News&lt;/b&gt; provides trusted World and UK &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.foxnews.com/&quot; target=&quot;_blank&quot; title=&quot;http://www.foxnews.com/&quot;&gt;&lt;strong&gt;FOXNews.com&lt;/strong&gt;&lt;br /&gt;&lt;b&gt;...&lt;/b&gt; Jacko Talks Neverland. Michael Jackson tells FOX &lt;b&gt;News&lt;/b&gt; about the &amp;#39;bliss&amp;#39; of his home, says he&amp;#39;s a target. LATEST HEADLINES. ONLY ON FOX. &lt;b&gt;...&lt;/b&gt; FOX &lt;b&gt;NEWS&lt;/b&gt; 24/7. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://abcnews.go.com/&quot; target=&quot;_blank&quot; title=&quot;http://abcnews.go.com/&quot;&gt;&lt;strong&gt;ABC &lt;b&gt;News&lt;/b&gt;: Online &lt;b&gt;news&lt;/b&gt;, breaking &lt;b&gt;news&lt;/b&gt;, feature stories and more&lt;/strong&gt;&lt;br /&gt;ABC &lt;b&gt;News&lt;/b&gt; HomeABC &lt;b&gt;News&lt;/b&gt; Home. February 3, 2005 | Get Your Local &lt;b&gt;News&lt;/b&gt; and Weather. Search ABC &lt;b&gt;News&lt;/b&gt; Search the Web. &lt;b&gt;...&lt;/b&gt; ABC &lt;b&gt;News&lt;/b&gt; Now. View Schedule. Subscribe Now &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://news.google.com/&quot; target=&quot;_blank&quot; title=&quot;http://news.google.com/&quot;&gt;&lt;strong&gt;Google &lt;b&gt;News&lt;/b&gt;&lt;/strong&gt;&lt;br /&gt;Google &lt;b&gt;News&lt;/b&gt;. &lt;b&gt;...&lt;/b&gt; Rudy T Runs Himself Out of LA WOAI Los Angeles Daily &lt;b&gt;News&lt;/b&gt; - Xinhua - WTNH - People&amp;#39;s Daily Online - all 1,228 related ? BBC Sport. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.cbsnews.com/&quot; target=&quot;_blank&quot; title=&quot;http://www.cbsnews.com/&quot;&gt;&lt;strong&gt;CBSNews.com&lt;/strong&gt;&lt;br /&gt;Home US Iraq World Politics SciTech HealthWatch Entertainment New: Business Opinion FREE CBS &lt;b&gt;News&lt;/b&gt; Video. CBSNews.com, &lt;b&gt;...&lt;/b&gt; All Evening &lt;b&gt;News&lt;/b&gt;, All Early Show. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://news.yahoo.com/&quot; target=&quot;_blank&quot; title=&quot;http://news.yahoo.com/&quot;&gt;&lt;strong&gt;Yahoo! &lt;b&gt;News&lt;/b&gt; - Front Page&lt;/strong&gt;&lt;br /&gt;Personalize &lt;b&gt;News&lt;/b&gt; Home Page. Yahoo! &lt;b&gt;News&lt;/b&gt; Thu, Feb 03, 2005, &lt;b&gt;...&lt;/b&gt; Reuters Video, Stocks Edge Lower; Amazon Weighs (Reuters Video). &lt;b&gt;News&lt;/b&gt; via RSS. Top &lt;b&gt;News&lt;/b&gt;. Top Stories. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.wired.com/&quot; target=&quot;_blank&quot; title=&quot;http://www.wired.com/&quot;&gt;&lt;strong&gt;Wired &lt;b&gt;News&lt;/b&gt;&lt;/strong&gt;&lt;br /&gt;Read our design notes for details. Welcome to Wired &lt;b&gt;News&lt;/b&gt;. Skip &lt;b&gt;...&lt;/b&gt; Advertisement. updated 2:00 am Feb. 3, 2005 PT &lt;b&gt;News&lt;/b&gt; Archive. Peekaboo &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.msnbc.msn.com/&quot; target=&quot;_blank&quot; title=&quot;http://www.msnbc.msn.com/&quot;&gt;&lt;strong&gt;MSNBC - MSNBC Front Page&lt;/strong&gt;&lt;br /&gt;&lt;b&gt;...&lt;/b&gt; MSNBC &lt;b&gt;News&lt;/b&gt;, Alerts | Newsletters | RSS | Help, MSNBC Home. MSNBC TV. &lt;b&gt;News&lt;/b&gt;. Business. Sports. Entertainment. Tech / Science. Weather. Health. Travel. Blogs Etc. &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;liveInfoItem&quot;&gt;&lt;a href=&quot;http://www.usnews.com/usnews/home.htm&quot; target=&quot;_blank&quot; title=&quot;http://www.usnews.com/usnews/home.htm&quot;&gt;&lt;strong&gt;USNews.com: Home&lt;/strong&gt;&lt;br /&gt;&lt;b&gt;...&lt;/b&gt; dietary guidelines Best Hospitals: Top medical centers Honor Roll: 14 excellent hospitals Find a hospital: Comprehensive directory Heart Guide: &lt;b&gt;News&lt;/b&gt; and tools &lt;b&gt;...&lt;/b&gt;  &lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/liveInfoResult&gt;
+&lt;/liveInfo&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+
+
+<p>If there were no results, the liveInfoResult would be replaced by a liveInfoNoResult node. If there was a fault of some sort, then the liveInfoResult node would be replaced by a liveInfoFault node.</p>
+
+<h2>Debugging</h2>
+
+<p>If debugging is turned on, then liveInfo outputs the debug output that is received form the server to an element that is identified by the id of serviceName+opName+_liveInfoDebug giving (for wordpress search) wordpressSearch_liveInfoDebug. You can also do some direct checking by inserting the liveInfo url into your browser with the required parameters. For example, for wordpress, the url would be [path to liveInfo]/liveInfo/liveInfo.php?liveInfo=wordpress&amp;opName=Search&amp;s=rpc</p>
+
+<h2>Todo:</h2>
+
+<p>Streamline debug</p>
+
+<p>Make install easier with less or ideally no editing of xml files needed</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll&#8230;</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

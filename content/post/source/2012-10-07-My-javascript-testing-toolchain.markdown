@@ -1,0 +1,113 @@
+---
+categories:
+- Javascript
+comments: false
+date: "2012-10-07T00:00:00Z"
+slug: My-javascript-testing-toolchain
+tags:
+- Javascript
+- TDD
+title: My javascript testing toolchain
+---
+
+**Update (Jan 4th 2014)**: Since I wrote this post, I've switched to using [Karma](http://karma-runner.github.io/) instead of testem. Karma is written and supported by the Angular guys and in the year or so since this post was originally written has matured more than testem. I have a [karma skeleton project](https://github.com/lawrencec/karma-test-skeleton) that I use to setup my frontend testing environment. The readme for that project is pretty extensive and outlines how to set up a karma project.
+
+I've gotten very satisfied with the set of tools I'm currently using when
+writing JS tests, so much so that I'd thought I'd write a blog post about it.
+
+I write my tests either using [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/)
+or [Jasmine](http://pivotal.github.com/jasmine/). I also use a forked
+version of [JSCovReporter](https://github.com/lawrencec/JSCovReporter) to show me code coverage information.
+Whilst writing and
+developing the tests I'd either run them in a browser (and manually refresh) or via phantomjs.
+This means that most of the time my tests are being tested in either firefox or
+a webkit-based browser. Of course before committing, the tests are checked manually in all browsers in case of cross browser issues.
+
+This last step though is now replaced with a tool called [testem](https://github.com/airportyh/testem).
+Testem is a command line tool that automates the running of your tests in any specified
+useragents and displays the results in the terminal. It'll detect changes in the
+test files and automatically reruns the tests. It can also run the tests in CI
+mode which means the results are output in TAP format from which Jenkins can parse and
+generate reports.
+
+So now, instead of having a browser open whilst writing tests, I run a command like
+this:
+
+{{< highlight bash "linenos=inline" >}}
+$ testem -f testem.json
+{{< / highlight >}}
+
+and windows for Chrome, Safari and Firefox are opened, the tests are run and results
+are displayed (The browsers and tests page(s) are specifed in the testem.json
+file). Alternatively you can also run it headlessly using phantomjs if you don't need a browser.
+
+The results looks like this:
+
+{{< figure src="/images/testem-example.png" title="testem example" >}}
+
+The browser windows are kept open so subsequent changes will trigger the re-run
+of the tests. Though, in this example, only the above browsers were specified, I
+can add other browsers manually just by opening the same url in a different browser.
+At work for instance, where I work on an iMac with 8gigs of memory and have
+access to multiple mobile test devices, I would also have tabs for all the IE's running via
+a vm, iOS simulator and a couple of android phones. So now, rather than wait for Jenkins
+or perform a quick manual check of the tests in each browser before committing,
+I know pretty much straight away if a test fails because of a cross-browser issue.
+
+The icing on the cake is that only a small change to your spec runner files
+is required:
+
+{{< highlight html "linenos=inline" >}}
+<!-- Add testem support to your test runner page -->
+<script type="text/javascript">
+    if (location.hash.indexOf('#testem') !== -1) {
+        document.write('<script src="/testem.js"></'+'script>');
+    }
+</script>
+{{< / highlight >}}
+
+It's a bit ugly but the conditional is there so there the test page can be
+run manually without testem.
+
+## CI mode
+
+Running testem in CI mode is done using the "ci" parameter:
+
+{{< highlight bash "linenos=inline" >}}
+$ testem -f testem.json ci -b Chrome
+{{< / highlight >}}
+
+The results are displayed in TAP format which can be piped to a file which Jenkins
+can be configured to read from. Full configuration of Jenkins can be found on the
+testem [use with jenkins](https://github.com/airportyh/testem/blob/master/docs/use_with_jenkins.md)
+documentation page.
+
+## Code Coverage
+
+I use a forked version of JSCovReporter to generate the coverage report. It's forked
+to remove the dependency on backbone.
+
+In order for JSCovReporter to render the report the tests need to be run against
+pre-instrumented code so when each statement in the files are run they can be counted.
+This is done using [CoverJS](https://github.com/arian/CoverJS) like so:
+
+{{< highlight bash "linenos=inline" >}}
+$ coverjs ./*.js -o ./instrumented
+{{< / highlight >}}
+
+The above command instruments the specified files and outputs them into an directory
+called instrumented. These files should then be included in the test page in order
+for the code coverage report to be generated correctly.
+
+## Integrated usage
+
+The test page for my very small micro lib preposterous uses both testem and JSCovReporter
+so should serve as a simple integrated example.
+
+The preposterous [project page](http://preposterous.nodetraveller.com/) is a autogenerated composite
+page of the latest version of the project Readme and chaijs test report. There is also a [coverage page](http://preposterous.nodetraveller.com/index-coverage.html)
+that includes the code coverage report (click on the file name on the right or scroll down to see the full report).
+
+The source code for both the tests reports (minus the project Readme) can be found in the [test directory](https://github.com/lawrencec/preposterous/tree/master/src/tests)
+and shows how to integrate both testem and JSCovReporter into a test runner page.
+

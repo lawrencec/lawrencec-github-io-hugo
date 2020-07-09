@@ -1,0 +1,21 @@
+---
+categories:
+- Flash
+date: "2003-10-06T17:10:30Z"
+slug: rss-in-flash-2004
+status: publish
+tags:
+- actionscript
+- Flash
+- rss
+title: ' RSS  in Flash 2004  '
+wordpress_id: "13"
+---
+
+I haven't had time to post anything recently but I have had time to quickly cobble together a little app using flash 2004 and its components. Yet another rss app but it shows nicely the usage of various components, old and new, that 2004 offers.
+
+It uses the Accordion and TextArea UIComponents and the XMLConnector to load the urls of the feeds to download. Flash's css support is also demostrated within the textarea. The actual loading of the feeds is done via remoting (2004 remoting and amfphp) which utilises a nice little rss parser from www.readinged.com called [onyx-rss](http://www.readinged.com/onyx/rss/). The feeds are cached on the server and updated every 3 hours.
+
+You can see it [here](http://www.nodetraveller.com/flash/myNews/myNews.html). Depending on your connection it may take a few seconds to get the data so please be patient. If you want to download the fla,.as files and server code then grab this [zip](http://www.nodetraveller.com/downloads/myNews.zip). Read the comments in the .as files if you want to run it on your server.
+
+Update: Noticed that [Jesse Warden](http://www.jessewarden.com/) also has a accordion based rss app. Besides the use of the accordion, it is different, but shows a slightly different way of doing the same thing. Go on take a look...

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Web | Just another Nodetraveller]]></title>
+  <link href="http://blog.nodetraveller.com/categories/web/atom.xml" rel="self"/>
+  <link href="http://blog.nodetraveller.com/"/>
+  <updated>2013-05-22T22:55:09+01:00</updated>
+  <id>http://blog.nodetraveller.com/</id>
+  <author>
+    <name><![CDATA[Lawrence Carvalho]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Semantic Web - right now]]></title>
+    <link href="http://blog.nodetraveller.com/Web/semantic-web-right-now.html"/>
+    <updated>2005-02-18T14:25:56+00:00</updated>
+    <id>http://blog.nodetraveller.com/Web/semantic-web-right-now</id>
+    <content type="html"><![CDATA[<p>A semantic interface means finding information online will be much easier as unrelated results won&rsquo;t appear. Here&rsquo;s a  <a href="http://infomesh.net/2001/swintro/">gentle intro to the semantic web</a>.</p>
+
+<p>The semantic web won&rsquo;t be in wide use yet but the University of Southhampton has released an interface to a new semantic web interface called <a href="http://mspace.ecs.soton.ac.uk/">mSpace</a>. They have an example interface searching for classical music which currently is Mozilla only. It is javascript driven and uses xmlhttprequest to retrieve the data. The client source code is even available on <a href="http://mspace.sourceforge.net/">sourceforge</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

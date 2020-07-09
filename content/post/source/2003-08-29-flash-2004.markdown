@@ -1,0 +1,42 @@
+---
+categories:
+- News
+date: "2003-08-29T16:38:57Z"
+slug: flash-2004
+status: publish
+tags:
+- Flash
+title: ' Flash 2004  '
+wordpress_id: "10"
+---
+
+It's here! well, almost anyway...
+
+Flash 2004 will be released next month. I know, I'm a few days behind but I've been too busy to post and besides this blog didn't exist when the word came out so I have probably the best excuse in the world for a late blog about F2004.
+
+Anyway though I've been busy, I have been able to read up on the new features of flash.
+
+Heres the things I've seen that excite me the most so far:
+
+**CSS in textfields** - anyone who's used text in flash will breathe a sigh of relief about this..
+
+**Context Menu** - Great for RIAs..
+
+**Project Control** - very Nice!
+
+**History panel** - at least superficially, this reminds me of Photoshop (hope there won't be any court action over this again!)
+
+**Actionscript 2.0** - proper OO with strong typing. One thing I don't like is the use of the colon to denote the type of the variable. For exampe if you're declaring a movieclip variable you'd do it like this:
+
+aclip_mc : MovieClip
+
+
+but theres loads more...
+
+Here's a link from MM about the information about the new features:
+
+[MM Devnet Article](http://www.macromedia.com/devnet/mx/flash/articles/mx2004.html)
+
+and finally a review of Studio 2004 at [webmonkey](http://hotwired.lycos.com/webmonkey/03/29/index0a.html)
+
+Personally, I'm looking forward to the new css support. This, along with the context menu will give users of flash apps richer experiences while the rest of the new features will allow developers to develop better apps in less time. Which has gotta be a good thing, right?

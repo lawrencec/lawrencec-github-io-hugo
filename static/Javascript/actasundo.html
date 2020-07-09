@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ActsAsUndoable - Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="With web apps becoming more and more like Desktop apps, it seems like user interfaces need be more like desktop user interfaces too. Some of these &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/Javascript/actasundo.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ActsAsUndoable</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-18T09:04:36+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>With web apps becoming more and more like Desktop apps, it seems like user interfaces need be more like desktop user interfaces too. Some of these web apps can have a complex UI and their users need to be able to feel comfortable with it. Of course, making the UI as simple as possible is key, but if a task is relatively complex then the UI will also be relatively complex. With more complex tasks, users can make mistakes or want to change things and if they do, they&rsquo;d appreciate a way of doing so. One way to do that is to provide the user a way of undoing their actions; a way to retreat over their history. Just to make clear, this is something along the lines of a user interaction history, not a browser navigation history. Hence ActsAsUndoable, one way of adding undo functionality to your interactive widgets. (Incidentally while I was writing this post, Aza Raskin posted an <a href="http://www.alistapart.com/articles/neveruseawarning">article</a> on <a href="http://www.alistapart.com">A List Apart</a> about using undo functionality in interaction design, which seems to dovetail well with this post.)</p>
+
+<h2>Design Patterns</h2>
+
+<p>Whenever I code a widget, there&rsquo;s two resources I look to. One is Yahoo!&rsquo;s <a href="http://developer.yahoo.com/ypatterns/">Design Pattern library</a> and the other is Jennifer Tidwell&rsquo;s <a href="http://designinginterfaces.com/">Designing Interfaces</a> book. It&rsquo;s from this book and more specifically the explanation of the <a href="http://designinginterfaces.com/Multi-Level_Undo">Multi-Level Undo pattern</a> that ActsAsUndo is based on.</p>
+
+<p>Basically the Multi-Level Undo pattern says that if users can navigate through their action history and undo their actions, then they can explore their own work paths quickly and safely. The most obvious desktop example of a navigable history is Photoshop&rsquo;s history panel.</p>
+
+<p>The pattern states that these kind of actions should be undoable:</p>
+
+<ul>
+<li><p>Text entry for documents or spreadsheets</p></li>
+<li><p>Database transactions</p></li>
+<li><p>Modifications to images or painting canvases</p></li>
+<li><p>Layout changes &mdash; position, size, stacking order, or grouping in graphic applications</p></li>
+<li><p>File operations, such as deleting or modifying files</p></li>
+<li><p>Creation, deletion or rearrangement of objects such as email messages or spreadsheet columns</p></li>
+<li><p>Any cut, copy, or paste operation</p></li>
+</ul>
+
+
+<p>There are apps like these available on the web and some do have some simple undo/history functionality. These do tend to be only a single step undo and then, only for actions that change and save a new state eg move to trash. But also other actions that users make but perhaps don&rsquo;t yet want (or need) to save should also be undoable and at a multiple level too. So, how do we as implement something like the Multi Level Undo <strong>interaction pattern</strong>? We use the <a href="http://en.wikipedia.org/wiki/Memento_pattern">Memento</a> <strong>software design pattern</strong>.</p>
+
+<h2>Demos</h2>
+
+<p>Two of Jennifer&rsquo;s examples are text entry and stacking order changes. I thought these would be relatively simple examples to use for demo purposes. Here&rsquo;s the <a href="/sandbox/actsasundoable/memento.html">text entry</a> demo and also the <a href="/sandbox/actsasundoable/undo-list.html">stacking order</a> demo. I used the demo of the YUI&rsquo;s sortable list which I hope they don&rsquo;t mind. If you want, take a look at these to see whats going on before reading on.</p>
+
+<h2>Text entry</h2>
+
+<p>The first example I&rsquo;ll cover is the text entry one. It&rsquo;s a simple example of a textarea in which users can enter text and save snaphots. The original class has two properties <strong>el</strong> and <strong>sValue</strong>. <strong>el</strong> represents the textarea and <strong>sValue</strong>, the textarea&rsquo;s value. It has a method called <strong>setText()</strong> whichs sets <strong>sValue</strong> to the value of the textarea.</p>
+
+<p>Finally we have a <strong>snapshotText()</strong> method which calls <strong>setText()</strong>. We wire a button element to this method.</p>
+
+<div><script src='https://gist.github.com/463367.js'></script>
+<noscript><pre><code>YAHOO.NT.UI.TextUpdate = function(elId,sGroup,sPreviewId) { 
+  this.el = document.getElementById(elId); 
+  this.sValue = this.el.value; 
+} 
+YAHOO.NT.UI.TextUpdate.prototype.setText = function(sValue) { 
+  this.sValue = this.el.value = sValue; 
+} 
+YAHOO.NT.UI.TextUpdate.prototype.snapshotText = function() { 
+  if (this.sValue != this.el.value) {
+    this.setText(this.el.value); 
+  } 
+}</code></pre></noscript></div>
+
+
+<p>We can add undoable functionality by augmenting it with <strong>YAHOO.Acts.as.Undoable</strong>. This adds a <strong>sCaretakerGroup</strong> property and <strong>undo()</strong>,<strong>redo()</strong>,<strong>revert()</strong> and <strong>restore()</strong> methods. All we need to do is subscribe to the &lsquo;stateLoaded&rsquo; event and make a call to <strong>saveState()</strong> of the Caretaker to record the initial state. We can do this in the constructor of out TextUpdate object or a <strong>init()</strong> method if we choose to use one.</p>
+
+<div><script src='https://gist.github.com/463449.js'></script>
+<noscript><pre><code>this.sCareTakerGroup = sGroup; 
+YAHOO.NT.CaretakerRegistry.subscribe(this.sCareTakerGroup,&#39;stateLoaded&#39;,this.restore,this,true);
+YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,&#39;New&#39;,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this});
+</code></pre></noscript></div>
+
+
+<p>The first line just sets up a property that allows us to identify a caretaker to manage our states (more on this later).</p>
+
+<p>The second line subscribes to an event called &lsquo;stateLoaded&rsquo; and sets the callback to our <strong>restore()</strong> method.</p>
+
+<p>Then, the third line saves our initial state. We need to do this so the <strong>revert()</strong> method can revert to the initial state. The callback we specify here   depends on your object</p>
+
+<p>So now our TextUpdate class looks like this :</p>
+
+<div><script src='https://gist.github.com/463371.js'></script>
+<noscript><pre><code>YAHOO.NT.UI.TextUpdate  = function(elId,sGroup,sPreviewId) { 
+  this.el = document.getElementById(elId); 
+  this.sValue = this.el.value; 
+
+  //Interact with caretaker 
+  this.sCareTakerGroup = sGroup; 
+  YAHOO.NT.CaretakerRegistry.subscribe(this.sCareTakerGroup,&#39;stateLoaded&#39;,this.restore,this,true);
+  YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,&#39;New&#39;,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this}); 
+}
+
+YAHOO.NT.UI.TextUpdate.prototype.setText = function(sValue) { 
+  this.sValue = this.el.value = sValue; 
+} 
+
+YAHOO.NT.UI.TextUpdate.prototype.snapshotText = function() { 
+  if (this.sValue != this.el.value) { 
+     this.setText(this.el.value); 
+    //saves value to caretaker 
+    YAHOO.NT.CaretakerRegistry.saveState(this.sCareTakerGroup,null,{&#39;args&#39;:[this.sValue],&#39;execute&#39;:this.setText,&#39;oScope&#39;:this}); 
+  } 
+}
+//make undoable
+YAHOO.augment(YAHOO.NT.UI.TextUpdate,YAHOO.Acts.as.Undoable);</code></pre></noscript></div>
+
+
+<p>The last line adds the undoable functionality to the TextUpdate object. (see next code snippet)</p>
+
+<p>But what&rsquo;s all this caretaker stuff? Well, the Memento software design pattern is an established pattern that helps to implement undo functionality. I touched on the Memento pattern in an <a href="/Flash/design-patterns-in-flash.html">earlier post</a> about object-oriented Actionscript.</p>
+
+<p>The Memento pattern has three classes; Originator, Caretaker and Memento. Basically using these three classes, the Memento pattern works likes this:</p>
+
+<p>If an Originator wants its state or some of its state to be undoable or redoable, then it must save its state to a Caretaker. This Caretaker will manage the various states (Mementos) of our Originator. (isn&rsquo;t it lovely terminology?)</p>
+
+<p>Using this as a premise, we can devise a simple &lsquo;framework&rsquo; for adding multi level undo functionality to our apps. We don&rsquo;t need (or want) to create lots of class hierarchy for our apps but the only classes we need to create revolve around the Caretaker object. Each object that we need undo functionality for, we have a corresponding caretaker. To manage multiple Caretaker objects (since perhaps multiple objects need a separate history), we use a CaretakerRegistry singleton object to do so. This allows Caretaker objects to be registered and created, if not done so already. It also acts as proxy to caretaker objects as all calls to Caretakers are made via the CaretakerRegistry. A registry also allows multiple objects to monitor state changes of an Originator. See the HistoryList section for an example of such an object</p>
+
+<p>Interaction is achieved using CustomEvents. Caretaker objects fire &lsquo;stateLoaded&rsquo; and &lsquo;stateSaved&rsquo; events. Originator objects subscribe to the &lsquo;stateLoaded event. Any other object that is interested in the state of our Originator will subscribe to both &#8216;stateLoaded&rsquo; and &lsquo;stateSaved&rsquo; events. Each event passes the Memento object to each listening object.</p>
+
+<p>Everytime the state of our object has changed and needs to be saved, we call the <strong>saveState</strong> method (see line 19) of our object&rsquo;s Caretaker which makes a note of the new state and fires off a &lsquo;stateSaved&rsquo; event.</p>
+
+<p>Here are the methods that ActsAsUndoable adds.</p>
+
+<div><script src='https://gist.github.com/463373.js'></script>
+<noscript><pre><code>/**
+ * redo changes
+ */
+ undo : function() {
+    YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup);
+ },
+
+/**
+ * Redo changes
+ */
+ redo : function() {
+    YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup,-1);
+ },
+    
+/**
+ * Revert to initial text value
+ * 
+ */
+revert : function() {
+    YAHOO.NT.CaretakerRegistry.loadState(this.sCareTakerGroup,0);
+},
+    
+/**
+ * 
+ * 
+ * @param {Object} oState Object containing callback to call with specified 
+ * arguments and scope. Fields are :
+ * 
+ * {Array}  oState.args Array of arguments to call callback with
+ * {fn}         oState.execute Calblack function
+ * {Object} oState.oScope Object to use as scope for callback
+ */
+restore : function(oState) {
+  if (oState.execute) {
+    oState.execute.apply(oState.oScope,oState.args);    
+  }
+}</code></pre></noscript></div>
+
+
+<p>Our object also has <strong>undo()</strong>,<strong>redo()</strong>,<strong>revert()</strong> methods, all of which call the <strong>loadState()</strong> method of the Caretaker. This, in turn, fires off a &lsquo;stateLoaded&rsquo; event. Because our originating object subscribes to the &lsquo;stateLoaded&rsquo; event it is passed the Memento object, which represents the state of the object that it needs to be undone, redone or reverted to. The listening method of our object that the custom event fires to is called <strong>restore()</strong>. This is the method that sets the state of our object. The <strong>restore()</strong> method is passed an object with three properties. These are <strong>args</strong>,<strong>execute</strong>, and <strong>oScope</strong> and are defined when we save the state via the <strong>saveState()</strong> method. Our <strong>restore()</strong> simply calls the method specified in <strong>execute</strong> passing as args those specified in <strong>args</strong> using <strong>oScope</strong> as the scope for the method.. I restore the state of the object like this (via a method call) rather than simply overwriting some properties with older properties as often some logic needs to be run as well; just resetting the properties probably won&rsquo;t suffice in anything other than a very simple widget). The best way to do that is via existing methods on our originating object. For the pattern heads out there, this way is similar to the <a href="http://en.wikipedia.org/wiki/Command_pattern">command pattern</a> without actually creating Command objects &ndash; the existing methods are the Commands.</p>
+
+<h2>Stacking Order</h2>
+
+<p>The <a href="/sandbox/actsasundoable/undo-list.html">stacking order demo</a> is similar. I rewrote the example to reflect the changes needed to make the reordering done by single method (orderLi). Also I haven&rsquo;t augmented it with ActsAsUndoable as I don&rsquo;t use the undo, redo or revert functionality in the UI. The source for YAHOO.example.DDApp is probably a good example to view if you want to see how to add undoable functionality without using augmentation.</p>
+
+<h2>History List</h2>
+
+<p>The History List object is one that listens to state changes of a given object and renders them in a list. It shows how other objects besides the Originator can monitor changes of state. Clicking on each item in the list, rolls back the state of that object to the state. You just initialise it with the id of the container and the CaretakerGroup that the object you&rsquo;re providing a history for is using.</p>
+
+<p>Each link in the history list is a named anchor. However in the update() method, we stop the Event so the browser doesn&rsquo;t actually add it to its own history. We don&rsquo;t want the act of navigating through the history of our own actions within our task to interfere with the history of our browser.</p>
+
+<p>We can create a new HistoryList object that monitors changes to our object by this :</p>
+
+<div><script src='https://gist.github.com/463374.js'></script>
+<noscript><pre><code>hl = new YAHOO.NT.UI.HistoryList(&#39;hlistCont&#39;,&#39;textArea&#39;); </code></pre></noscript></div>
+
+
+<p>The first is the id of an element in which to render the history list. The second is the name of the caretaker group to monitor. The list is rendered to the document and any saves, reverts, undo etc are shown in this list.</p>
+
+<h2>Resources and notes :</h2>
+
+<ul>
+<li><p>The ActsAsUndoable was an interim tongue-in-cheek working name but I kinda like it. The Acts.as namespace is a bit overkill but it fits pretty well and will work out nicely in future things I want to post about.</p></li>
+<li><p>Accessibility &ndash; we should set the tabindex of our textarea or list to -1 and focus() them when a history list item is clicked or pressed. See this <a href="http://juicystudio.com/article/making-ajax-work-with-screen-readers.php">making ajax work with screen readers article</a> from <a href="http://juicystudio.com/">Juicystudio</a>
+*</p></li>
+<li><p>For the textUpdate example I&rsquo;ve used the word &lsquo;snapshot&rsquo; rather than &lsquo;save&rsquo; as &lsquo;save&rsquo; would probably mean save permanently to most people. Another button called save could easily be added that would do a true save via normal form functionality. It could even be done using AJAX and the <a href="http://developer.yahoo.com/yui/history/">Browser History manager</a> from the YUI library, which would add an item to the history list. Having said that, we don&rsquo;t want to confuse user with two histories; browser history and what I call User Interaction History.</p></li>
+<li><p>I used the terms as specified as in the Memento Design Pattern. These aren&rsquo;t the clearest names and I was in two minds of calling Caretaker and CaretakerRegistry, UserActionManager and UserActionManagerRegistry. But I suppose these objects can be used for things other than user actions so I kept the design pattern language.</p></li>
+</ul>
+
+
+<p>You can download the <a href="http://www.nodetraveller.com/downloads/ActsAsUndoable.zip">examples and js files.</a> One of these days I&rsquo;ll make my subversion repo public but for now old fashioned zip files will have to do.</p>
+
+<p>Finally, thanks to Tony Kabalan for being a sound board and inputting some useful ideas.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lawrence Carvalho</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-18T09:04:36+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/javascript/'>Javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/Javascript/ajaxevent.html" title="Previous Post: AjaxEvent">&laquo; AjaxEvent</a>
+      
+      
+        <a class="basic-alignment right" href="/Javascript/creating-js-files-with-rhino-from-json.html" title="Next Post: Creating js files with Rhino (from JSON)">Creating js files with Rhino (from JSON) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

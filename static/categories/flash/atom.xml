@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Flash | Just another Nodetraveller]]></title>
+  <link href="http://blog.nodetraveller.com/categories/flash/atom.xml" rel="self"/>
+  <link href="http://blog.nodetraveller.com/"/>
+  <updated>2013-05-22T22:55:09+01:00</updated>
+  <id>http://blog.nodetraveller.com/</id>
+  <author>
+    <name><![CDATA[Lawrence Carvalho]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ RSS  in Flash 2004  ]]></title>
+    <link href="http://blog.nodetraveller.com/Flash/rss-in-flash-2004.html"/>
+    <updated>2003-10-06T17:10:30+01:00</updated>
+    <id>http://blog.nodetraveller.com/Flash/rss-in-flash-2004</id>
+    <content type="html"><![CDATA[<p>I haven&rsquo;t had time to post anything recently but I have had time to quickly cobble together a little app using flash 2004 and its components. Yet another rss app but it shows nicely the usage of various components, old and new, that 2004 offers.</p>
+
+<p>It uses the Accordion and TextArea UIComponents and the XMLConnector to load the urls of the feeds to download. Flash&rsquo;s css support is also demostrated within the textarea. The actual loading of the feeds is done via remoting (2004 remoting and amfphp) which utilises a nice little rss parser from www.readinged.com called <a href="http://www.readinged.com/onyx/rss/">onyx-rss</a>. The feeds are cached on the server and updated every 3 hours.</p>
+
+<p>You can see it <a href="http://www.nodetraveller.com/flash/myNews/myNews.html">here</a>. Depending on your connection it may take a few seconds to get the data so please be patient. If you want to download the fla,.as files and server code then grab this <a href="http://www.nodetraveller.com/downloads/myNews.zip">zip</a>. Read the comments in the .as files if you want to run it on your server.</p>
+
+<p>Update: Noticed that <a href="http://www.jessewarden.com/">Jesse Warden</a> also has a accordion based rss app. Besides the use of the accordion, it is different, but shows a slightly different way of doing the same thing. Go on take a look&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Patterns in Flash]]></title>
+    <link href="http://blog.nodetraveller.com/Flash/design-patterns-in-flash.html"/>
+    <updated>2003-09-14T17:20:14+01:00</updated>
+    <id>http://blog.nodetraveller.com/Flash/design-patterns-in-flash</id>
+    <content type="html"><![CDATA[<p>Now Actionscript is OO, I thought it would be useful to try out implementing a design pattern in Flash. The pattern I chose is the Memento pattern, which is mainly used to implement &ldquo;undo&rdquo; functionality in applications. The reason I chose Memento is because its a pattern that uses interfaces and I wanted to explore this in AS 2.0. An interface is an object that defines methods but has no implementation.</p>
+
+<p>The Memento pattern consists of three objects, Originator, Memento and Caretaker. The Originator is the object of which all or some properties need to &lsquo;saved&rsquo;. These properties are saved in a Memento object. Finally the caretaker object is in charge of any saving or &lsquo;undoing&rsquo;.</p>
+
+<p>Any object that wants its state to be stored for possible retreival later (Originator) must have two methods defined. These are setMemento() and createMemento(). An interface for this would look like this:</p>
+
+<p><div><script src='https://gist.github.com/1739394.js?file=interface'></script>
+<noscript><pre><code>interface com.nodetraveller.patterns.Memento.iOriginator {
+	function setMemento(m:iMemento):Void;
+	function createMemento():iMemento;
+}</code></pre></noscript></div>
+</p>
+
+<p>The setMemento has one parameter (Memento) and its job is to extract the properties from it and revert the Originators own state using those properties. So this is used after its state has been saved. To save a state, the createMemento method is used. This returns a memento object which has all the properties that the originator wants saved. To implement the originator interface we would write something like this:</p>
+
+<p><div><script src='https://gist.github.com/1739394.js?file=implementinterface'></script>
+<noscript><pre><code>import com.nodetraveller.patterns.Memento.*;
+
+class com.nodetraveller.patterns.Memento.Originator implements com.nodetraveller.patterns.Memento.iOriginator{
+	private var _text:String = &quot;&quot;;
+	private var _isChecked:Boolean = false;
+
+	public function setMemento(m:Memento):Void {
+		this._text = m.getText();
+		this._isChecked = m.getChecked();
+	}
+
+	public function createMemento():Memento {
+		return new Memento(_text,_isChecked);
+	}
+
+}</code></pre></noscript></div>
+</p>
+
+<p>This class has two properties (a string and a boolean type) that is saved using a memento object. This memento then only needs the same properties that the originator wants saved and relevant getters and setters.</p>
+
+<p><div><script src='https://gist.github.com/1739394.js?file=mementoclass'></script>
+<noscript><pre><code>import com.nodetraveller.patterns.Memento.*;
+
+class com.nodetraveller.patterns.Memento.Memento {
+	private var _text:String;
+	private var _isChecked:Boolean;
+
+	function Memento(text:String,checked:Boolean) {
+		this._text = text
+		this._isChecked =checked;
+	}
+
+	public function getText():String {
+		return this._text
+	}
+
+	public function getChecked():Boolean {
+		return _isChecked;
+	};
+}</code></pre></noscript></div>
+</p>
+
+<p>Now that we have the originator and the memento, all thats left is the caretaker.</p>
+
+<p><div><script src='https://gist.github.com/1739394.js?file=originatorclass'></script>
+<noscript><pre><code>import com.nodetraveller.patterns.Memento.*;
+
+class com.nodetraveller.patterns.Memento.Caretaker {
+	private var _orig:Originator
+	private var _memento:Memento;
+
+	function Caretaker() {
+	_orig = new Originator();
+	};
+
+	function saveState(){
+	this._memento = _orig.createMemento();
+	}
+
+	function revertState(){
+	this._orig.setMemento(_memento);
+	}
+}</code></pre></noscript></div>
+</p>
+
+<p>The saveState method calls the createMemento method on the Originator which returns a memento which the caretaker keeps. When the originator needs to be reverted, the caretaker set the originators memento to the one it saved.</p>
+
+<p>Ideally, the getter and setters for the Memento shouldn&rsquo;t be public as only the Originator should have access. In Java, this would be implemented using inner classes.</p>
+
+<p>I&rsquo;ve created a fla using these classes <a href="http://www.nodetraveller.com/downloads/mementoDP.zip">here</a>. Its a simple demo showing a textArea and a checkbox which you can save and revert</p>
+
+<p><strong>Note: </strong>In the Caretaker class of the zip, I&rsquo;ve put the eventhandlers for the GUI. In a real app these would probably be in another object.
+Also you may have to add the path where you saved the files to Flash&rsquo;s classpath. This can be done in Edit->Preferences.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ Flash TvGuide App]]></title>
+    <link href="http://blog.nodetraveller.com/Flash/flash-tvguide-app.html"/>
+    <updated>2003-09-08T14:53:37+01:00</updated>
+    <id>http://blog.nodetraveller.com/Flash/flash-tvguide-app</id>
+    <content type="html"><![CDATA[<p>Okay, heres the <a href="http://www.nodetraveller.com/flash/tvGuide/tvGuide.html">flash client</a> (only 47k!) for the TVguide webservice posted recently.</p>
+
+<p>It&rsquo;s quite a fairly simple movie using flash remoting and <a href="http://www.amfphp.org/">amfphp</a>. I used amf to call my tvguide <a href="http://www.nodetraveller.com/archives/000005.html">webservice</a> via SOAP. Instead of having your swf call a specifc flash service, you call a special service which acts like a proxy to SOAP webservices. This service looks like this..</p>
+
+<p><div><script src='https://gist.github.com/463436.js'></script>
+<noscript><pre><code>// AMFPHP uses by default the PEAR::SOAP
+// library, so you need to define in the
+// gateway not to use that. In this case
+// NuSOAP will be used
+
+// change this based on your amfphp installation
+include_once($_SERVER[&#39;DOCUMENT_ROOT&#39;] . &#39;/flashservices/app/Gateway.php&#39;);
+$gateway = new Gateway();
+$gateway-&gt;usePearSOAP(false);
+$gateway-&gt;service();</code></pre></noscript></div>
+</p>
+
+<p>You connect to this via NetServices..</p>
+
+<p><div><script src='https://gist.github.com/463437.js'></script>
+<noscript><pre><code>this.netConn = NetServices.createGatewayConnection(&quot;http://www.nodetraveller.com/flashservices/services/WSProxy.php&quot;);</code></pre></noscript></div>
+</p>
+
+<p>Then you specify the webservice you want by providing the endpoint to the getService method..</p>
+
+<p><div><script src='https://gist.github.com/463439.js'></script>
+<noscript><pre><code>this.service = this.netConn.getService(&quot;http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl&quot;,this);</code></pre></noscript></div>
+
+this.service = this.netConn.getService(&ldquo;<a href="http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl">http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl</a>&rdquo;,this);</p>
+
+<p>and then call the webservice method you want&hellip;</p>
+
+<p><div><script src='https://gist.github.com/463441.js'></script>
+<noscript><pre><code>this.service.getChannels(paramsObj);</code></pre></noscript></div>
+
+this.service.getChannels(paramsObj);</p>
+
+<p>The paramsObj is a value object holding any parameters the webservice method expects. When the data comes back you handle it the normal way..</p>
+
+<p>Oh, and I had lots of fun playing about with the datagrid and creating a custom cell for it for the channel logo graphics.</p>
+
+<p>Based on the Model View Architecture which works basically like this for those of you who don&rsquo;t know yet:
+The <strong>Model</strong> is an object that handles the remoting stuff and nothing else. It just connects to remote services and handles the data when it comes in. When the data does come in, it fires of an event to the <strong>View</strong>. The <strong>View</strong> is a listener of the <strong>Model</strong> so when the <strong>Mode</strong>l shouts, the <strong>View</strong> jumps. Now when the user interacts with the app, its the <strong>Controller</strong> that decides what to do; call a method on the <strong>Model</strong> or the <strong>View</strong>. Nice and easy&hellip;MVC ain&rsquo;t completely perfect but its very useful&hellip;</p>
+
+<p>You can see the actionscript files for the <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideModel.as.txt">Model</a></strong>, <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideView.as.txt">View</a></strong> or <strong><a href="http://www.nodetraveller.com/flash/tvGuide/tvGuideController.as.txt">Controller</a></strong> or download <a href="http://www.nodetraveller.com/downloads/tvGuide.zip">here </a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webservices in Flash 2004]]></title>
+    <link href="http://blog.nodetraveller.com/Flash/webservices-in-flash-2004.html"/>
+    <updated>2003-09-01T18:10:42+01:00</updated>
+    <id>http://blog.nodetraveller.com/Flash/webservices-in-flash-2004</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been playing about with the webservice connector in flash mx 2004. What I&rsquo;ve discovered is that connecting to a webservice and using the data returned is <strong>really</strong> easy.</p>
+
+<p>I&rsquo;m using the tvGuide webservice (<a href="http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl">http://www.nodetraveller.com/webservices/tvGuide/tvGuideService.php?wsdl</a> here at nodetraveller.com as one of the operations it provides is a list of channels which would look ideal in a listbox.</p>
+
+<p>Here&rsquo;s a quick guide to using a webservice:</p>
+
+<p>Create a new document from a Query-Error-Response template. (This helps us with our simple example as it already sets up a webservice connector and a submit button in the form.</p>
+
+<p>Click on the Webservice Connector (picture of a globe).</p>
+
+<p>In the Properties panel, paste the url of the webservice WSDL in the WSDLURL parameter,and press return. Flash will now access the wsdl and find out what operations are available.</p>
+
+<p>Click on the operations parameter and use the drop down to view the available operations. There should be two (getChannels and getChannelListings).</p>
+
+<p>Select <strong>getChannels</strong>. For this simple example, theres no real need to use the other parameters though you can if you want. it won&rsquo;t make any difference to our example.</p>
+
+<p>Drag a Listbox and a TextInput component into the query Form. Name the Listbox <strong>channels_lb</strong>. Call the TextInput <strong>date</strong>. Enter todays date into the TextInput (make sure its in DD/MM/YYYY format). (strictly we should we using the response form as well but this is only an example)</p>
+
+<p>Now select the webservice connector (you may have to select the application form first) and look in the component inspector (bottom right). Select the Binding tab. This is where you tell the webservice connector what to send to the webservice (and from what component) and what component to send the data to when received.</p>
+
+<p>Press the + sign icon to add a binding. In the dialog that opens up, select the
+<strong>date : String</strong> child of the <strong>params : Object</strong>.</p>
+
+<p>Now we have to tell Flash what value to send. Select the bound to parameter and select the TextInput <strong>date </strong>in the dialog that appears. Finally change the direction parameter to &ldquo;<strong>in</strong>&rdquo;. What we&rsquo;ve done is told Flash to get the value of the <strong>date </strong>TextInput (bound to parameter) and send it as a request to the webservice (direction parameter).</p>
+
+<p>To populate the listbox with our returned data, create another binding and select
+the <strong>results</strong> Array. Bind this to the listbox by configuring the bound to parameter. by selecting<strong> ListBox</strong>,<strong><strong> and </strong>dataprovider : Array</strong> in the right hand column of the Bound To dialog . Make sure that the direction is set to &ldquo;out&rdquo;. We&rsquo;ve just told Flash to pass the results Array received from the webservice to the dataprovider Array of the listbox. Doing so populates the Listbox.</p>
+
+<p>And that&rsquo;s it! And without writing any code. Test your movie and press the submit button&hellip;</p>
+
+<p>You can download it here (you&rsquo;ll need flash mx 2004 to view it)</p>
+
+<p>This is a very simple example but I think for more complex ones, you would bind the WSConnector to a DataHolder and use the DataHolder events to notify UI components of the data change&hellip;</p>
+
+<p>I feel the need for more experimentation&hellip;.</p>
+]]></content>
+  </entry>
+  
+</feed>

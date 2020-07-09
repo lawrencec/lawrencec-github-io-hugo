@@ -1,0 +1,21 @@
+---
+categories:
+- News
+date: "2006-11-19T12:01:39Z"
+slug: howdy
+status: publish
+tags:
+- News
+title: Howdy..
+wordpress_id: "47"
+---
+
+Hey.
+
+It's been a while.
+
+Been busy with [work](http://uk.yahoo.com), life and stuff.
+
+But feel like posting again so I've changed servers and got a temp design up, which will change soon.
+
+So let's see what happens.

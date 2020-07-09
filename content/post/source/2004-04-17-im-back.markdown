@@ -1,0 +1,17 @@
+---
+categories:
+- News
+date: "2004-04-17T16:24:25Z"
+slug: im-back
+status: publish
+tags:
+- News
+title: I'm back!
+wordpress_id: "6"
+---
+
+I knew I hadn't posted in a while but I didn't realise it's been almost 3 months! What have I been up to?!
+
+I've been doing a lot of work with Mambo recently and I like the thing so much I think I'm going to be moving the backend of this blog form Movable Type to Mambo. The main reason for this is that I'll need to put up a version of Mambo up anyway to demo the things I've been working on, so I might as well use it to blog as well. Also any features that Mambo doesn't have or I don't like, I can add it myself, someting I couldn't do quickly with MT as I don't know much perl.
+
+So quite soon, hopefully within two weeks, this site will change quite a bit. After that I should have more time to blog about what I'm up to....

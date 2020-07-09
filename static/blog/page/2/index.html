@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Just another Nodetraveller</title>
+  <meta name="author" content="Lawrence Carvalho">
+
+  
+  <meta name="description" content="Tim Huegdon has a great post about a really rather sweet piece of code called AjaxEvent over at his site, nefariousdesigns. Developed with Mark Aidan &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.nodetraveller.com/blog/page/2/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/nodetraveller" rel="alternate" title="Just another Nodetraveller" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = true;
+    t.id = 'gauges-tracker';
+    t.setAttribute('data-site-id', 'ab2377280932bf269e88962d130b0b57');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">&lt;</div>
+  	<div id="logoText">shinyloz</div>
+  	<div id="logoRight"> /&gt;</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Just another Nodetraveller</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/nodetraveller" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.nodetraveller.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Javascript/ajaxevent.html">AjaxEvent</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-16T21:25:57+01:00" pubdate data-updated="true">Jul 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Tim Huegdon has a great post about a really rather sweet piece of code called <a href="http://nefariousdesigns.co.uk/archive/2007/07/ajaxevent-using-yui-custom-events-with-ajax/">AjaxEvent</a> over at his site, <a href="http://nefariousdesigns.co.uk">nefariousdesigns</a>. Developed with Mark Aidan Thomas, AjaxEvent is an object that wraps around the <a href="http://developer.yahoo.com/yui/connection/">YUI Connection</a> and <a href="http://developer.yahoo.com/yui/event/#customevent">CustomEvents</a> that makes managing multiple, distinct ajax calls really easy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-15T21:15:27+01:00" pubdate data-updated="true">May 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is a rather belated post and is sort of a continuation of my last post about <a href="/Javascript/js-fun/">Aspect Oriented Programming</a>. I&rsquo;ve made yet another tabbed interface widgety thing (like the &lsquo;tubes needs another one) that uses AOP to add additonal features. A tabbed interface widget provided a nice problem for me to experiment with AOP. You can see the <a href="/sandbox/moduletabs/standard.html">results</a> which allows tabs in a widget to be draggable and closeable too. Built with a dash YUI goodness of course.</p>
+
+<p>The actual &lsquo;problem&rsquo; wasn&rsquo;t actually anything to do with the core behaviour of a tabbed interface. After all, the mechanics of such a problem is pretty simple; hide one element, show another. No, I wanted to make the tabs draggable and closeable, much like an OS tab that can be seen in Firefox or Eclipse. Using the <a href="http://developer.yahoo.com/yui/">YUI</a> library, making the tab draggable is relatively straight forward but it did result in some duplicated code which I didn&rsquo;t like. That was the &lsquo;problem&rsquo;.</p>
+
+<p>Essentially, it was like this: My original code had two objects, the YAHOO.NT.TabsModule and YAHOO.NT.Tab. The TabsModule was the managing object for each of the Tab objects. If I wanted to make it draggable I need Tab to extend YAHOO.util.DDProxy. No problem there except of course there has to be additonal logic in the Tab object to do so and also manage the dragging &lsquo;n&rsquo; dropping. Subclassing Tab would have worked but again code would be duplicated in those methods that needed the changes. But then you get into the trouble of class trees.  For instance, DraggableTab subclasses Tab and so does Closeable Tab. But what if I wanted a Draggable and Closeable Tab? That&rsquo;d be a little trickier to do while still maintaining some sense of clean code.</p>
+
+<p>The rather clean solution turns out to be AOP. Quickly, AOP allows us to easily add new code to existing code without editing it. It does this by essentially wrapping the original code so that the new code runs &lsquo;before&rsquo;,&lsquo;after&rsquo; or &lsquo;around the original code. These are the so called &#8216;aspects&rsquo;. So it turns out that to make a Tab draggable I&rsquo;d need to add new methods (my own as well as YAHOO.util.DDProxy) as well as fiddle with a few existing Tabs methods:</p>
+
+<p>Here I&rsquo;ve outlined which methods have been aspected (is that the right term?) and what the new code adds to the original.</p>
+
+<ul>
+<li><p>YAHOO.NT.TabsModule.init is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; both adds a new CustomEvent which listens to all existing Tab instances</p></li>
+<li><p>YAHOO.NT.TabsModule.selectTab is before aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to detect to close tab.</p></li>
+<li><p>YAHOO.NT.Tabs.initTab is after aspected by both YAHOO.NT.DraggableTabs and YAHOO.NT.CloseableTabs &ndash; adds new configuration logic, custom event creation</p></li>
+<li><p>YAHOO.NT.Tabs.activateTab and YAHOO.NT.Tabs.deactivateTab are both after aspected by YAHOO.NT.CloseableTabs &ndash; adds logic to show/hide close icon.</p></li>
+</ul>
+
+
+<p>Though, AOP in Javascript certainly isn&rsquo;t new, I really like the relatively clean way its allowed me to separate behaviours without duplicating any code.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/Javascript/js-fun.html">JS Fun</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-25T20:01:17+01:00" pubdate data-updated="true">Mar 25<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For the last few months I&rsquo;ve been playing around with different design patterns and methodologies in Javascript. I&rsquo;ve been looking at the Composite pattern and also <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">Aspects Oriented Programming</a> (AOP).</p>
+
+<p>AOP is a way of changing the behaviour of existing code without modifying it. It does this by providing, what AOP calls, <strong>advice</strong> at certain <strong>join points</strong>. In plain english, it provides a way of adding additional behaviour (advice) at certain points in your program (join points). For example, adding logging functionality to your code is a standard example. Generally, you don&rsquo;t want every method in your code to contain logging code. It&rsquo;s not really part of the core base code. AOP provides an easy way of doing without modifying your code. But because of the way AOP works, you can add as many behaviours as you want to, to any object.</p>
+
+<h3>What and how?</h3>
+
+<p>AOP provides three aspects called before, after and around. This means that you can add additonal behaviour before, after or around certain points in your code of your own choosing. I&rsquo;ve created a static class called YAHOO.Abstract.Aspect that I use to add advices to other objects. It&rsquo;s a very simple one and just adds the three advices to an method.</p>
+
+<div><script src='https://gist.github.com/463383.js'></script>
+<noscript><pre><code>YAHOO.Abstract.Aspect = function() {
+    aAspects = [];
+    aAspects[&quot;before&quot;]=function(oTarget,sMethodName,fn) {
+        var fOrigMethod = oTarget[sMethodName];
+        
+        oTarget[sMethodName] = function() {
+          fn.apply(oTarget, arguments);
+          return fOrigMethod.apply(oTarget, arguments);
+        }; 
+    };  
+    //after
+    aAspects[&quot;after&quot;]=function(oTarget,sMethodName,fn){
+        var fOrigMethod = oTarget[sMethodName];
+        oTarget[sMethodName] = function() {
+            var rv = fOrigMethod.apply(oTarget, arguments);
+            return fn.apply(oTarget, [rv]);
+        };
+    };  
+    //around
+    aAspects[&quot;around&quot;]=function(oTarget,sMethodName,aFn){
+        var fOrigMethod = oTarget[sMethodName];
+        oTarget[sMethodName] = function() {
+              if (aFn &amp;&amp; aFn.length==2) {
+                aFn[0].apply(oTarget, arguments);
+                var rv = fOrigMethod.apply(oTarget, arguments); 
+                return aFn[1].apply(oTarget, [rv]);
+              }
+              else {
+                return fOrigMethod.apply(oTarget, arguments);
+              }
+              
+            };
+    };
+    return {        
+        advise : function(oTarget,sAspect,sMethod,fAdvice) { 
+            if (oTarget &amp;&amp; sAspect &amp;&amp; sMethod &amp;&amp; fAdvice &amp;&amp; aAspects[sAspect]) {
+                //decorate specified method
+                aAspects[sAspect](oTarget,sMethod,fAdvice); 
+            }
+            return oTarget;
+        }
+    }
+}();</code></pre></noscript></div>
+
+
+<p>For instance, if I wanted to add a before advice, I&rsquo;d do something like the following :</p>
+
+<div><script src='https://gist.github.com/463386.js'></script>
+<noscript><pre><code>YAHOO.Abstract.Aspect.advise(obj,&#39;before&#39;,&#39;method&#39;,function() { alert(&#39;before&#39;)});</code></pre></noscript></div>
+
+
+<p>After advice is similar:</p>
+
+<div><script src='https://gist.github.com/463387.js'></script>
+<noscript><pre><code>YAHOO.Abstract.Aspect.advise(obj,&#39;after&#39;,&#39;method&#39;,function() { alert(&#39;after&#39;)});</code></pre></noscript></div>
+
+
+<p>Adding around advice is slightly different as you have to provide two methods, one for before and one for after:</p>
+
+<div><script src='https://gist.github.com/463451.js'></script>
+<noscript><pre><code>YAHOO.Abstract.Aspect.advise(obj,&#39;around&#39;,&#39;method&#39;,[function() {
+                alert(&#39;before&#39;);
+                },
+                function() {
+                alert(&#39;around&#39;);
+                }]
+);</code></pre></noscript></div>
+
+
+<p>All arguments are passed transparently to the original methods and for all after methods, the return value of the original method is passed in.</p>
+
+<p>Let&rsquo;s see how easy it is using the standard logging example. Its an simple but probably unpractical example.</p>
+
+<p>This example add a simple logging behaviour for every method of a specified object. When a method is called, it is logged and so are its arguments. It also displays the methods return value, if any. For this example, it makes use of <a href="http://www.getfirebug.com">Firebug</a> and some of its console functions, specificially <strong>group</strong> and <strong>groupEnd</strong>. These basically indent and outdent grouped console.log outputs. So how do we write the behaviour? Well, before a method is called, we want to start a new console group and also output which method was called and also any arguments if any were passed. Something like this:</p>
+
+<div><script src='https://gist.github.com/463390.js'></script>
+<noscript><pre><code>function() {
+window.console.group(&#39;Entered method %s&#39;,sMName);
+window.console.log(&quot;Received arguments: %o&quot;,arguments);
+}</code></pre></noscript></div>
+
+
+<p>Then when a method has returned we want to log that the method has returned and any return value it may returned.</p>
+
+<div><script src='https://gist.github.com/463392.js'></script>
+<noscript><pre><code>function() {
+window.console.log(&quot;Returned : %o&quot;,rv  || &#39;zilch&#39;);
+window.console.log(&#39;Exited method %s&#39;,sMName);
+window.console.groupEnd();
+}</code></pre></noscript></div>
+
+
+<p>In AOP terminology these would be termed &ldquo;before&rdquo; and &ldquo;after&rdquo; advice. But since there is also &ldquo;around&rdquo;, we can use that instead so we only modify each method once.</p>
+
+<p>So, the full code to add this logging behaviour to any object would be like this:</p>
+
+<div><script src='https://gist.github.com/463393.js'></script>
+<noscript><pre><code>YAHOO.namespace(&#39;YAHOO.NT&#39;);
+    YAHOO.NT.trace = function(oTarget) {
+        for (var p in oTarget) {
+            if (typeof oTarget[p] == &#39;function&#39;) {
+                (function (){
+                var sMName = p; 
+                var cnsl = window.console;              
+                    YAHOO.Abstract.Aspect.advise(oTarget,&#39;around&#39;,sMName,[function() {
+                            cnsl.group(&#39;Entered method %s&#39;,sMName);
+                            cnsl.log(&quot;Received arguments: %o&quot;,arguments);
+                        },
+                        function(rv) {
+                            cnsl.log(&quot;Returned : %o&quot;,rv  || &#39;zilch&#39;);
+                            cnsl.log(&#39;Exited method %s&#39;,sMName);
+                            cnsl.groupEnd();
+                        return rv;
+                    }]);
+                })()
+            }
+        }
+    }</code></pre></noscript></div>
+
+
+<p>The above code creates a new namespace so we don&rsquo;t pollute the global namespace and a new method called trace. All it does it receive a target object and adds the around advice to each method that it finds. It&rsquo;s also possible to extend this so that it receives another parameter which would state a whitelist or blacklist of methods to advise (or not). The actual call to advise any object, let&rsquo;s say the Dom object of YUI :</p>
+
+<div><script src='https://gist.github.com/463395.js'></script>
+<noscript><pre><code>YAHOO.NT.trace(YAHOO.util.Dom)</code></pre></noscript></div>
+
+
+<p>You can see the output on the <a href="/sandbox/aop/aspect-example.html">example</a> page.</p>
+
+<h3>What else can AOP be used for?</h3>
+
+<ul>
+<li><p>Profiling &ndash; very similar to the trace, but instead maintains a timing of how long each method took.</p></li>
+<li><p>Event firing on attribute changes &ndash; if you use getters and setters and when a set method has been called, automatically fire a valueChanged custom event. In practice, can really only be used when external entities change an objects property (Its not wise for an object to call its own setter method).</p></li>
+<li><p>Validation of methods arguments &ndash; validate passed arguments to a method, specifically setter methods though any type of method can be used.</p></li>
+<li><p>Convertors &ndash; bridge output from one object to another incompatible object</p></li>
+<li><p>Provide an alternate to subclassing &ndash; use mixins instead of subclassing to add more and more behaviours while reducing amount of code duplication. I&rsquo;ve used this for a widget and its <em>really</em> useful. I hope to be posting about that in a few days.</p></li>
+</ul>
+
+
+<h3>Is it useful?</h3>
+
+<p>I think it can be, in some cases. It means careful consideration about how you design your code, but I can envisage a small library using AOP or similar metaprogramming techniques. Often in larger javascript apps, there are many similar types of objects doing similar things. These are often utility objects which interact with different parts of your code but still have quite a lot of similarity within them. Why not use metaprogramming techniques to write these duplicated parts of your code <em>using</em> your own code as a base?</p>
+
+<h3>Where else is it used?</h3>
+
+<p>AOP in javascript isn&rsquo;t new to the Javascript world. Here&rsquo;s the <a href="http://www.dotvoid.com/view.php?id=43">post about aspects</a> I first read about using JS late last year (and I&rsquo;ve just noticed recently updated). It was <a href="http://encytemedia.com/blog/articles/2006/12/4/avoiding-bloat-in-widgets">Justin Palmer&rsquo;s</a> post though that got me thinking about AOP in widgets. The examples there uses Beppu&rsquo;s <a href="http://beppu.lbox.org/articles/2006/09/06/actsasaspect">ActsAsAspects</a> class. There&rsquo;s no difference between between that one and mine in terms of functionality except Beppu&rsquo;s version adds a couple of things to the target object which I didn&rsquo;t want to do.  Also <a href="http://dojotoolkit.org/node/91">Dojo</a> uses it in its event classes.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+A developer. Developing.
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/Javascript/My-javascript-testing-toolchain.html">My javascript testing toolchain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/creating-js-files-with-rhino-from-json.html">Creating js files with Rhino (from JSON)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/actasundo.html">ActsAsUndoable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/ajaxevent.html">AjaxEvent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/Javascript/another-tabbed-interface.html">Another Tabbed Interface</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/lawrencec">@lawrencec</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lawrencec',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll&#8230;</ul>
+  <p><a href="http://pinboard.in/u:lawrencec">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "lawrencec"; //id target for pinboard list
+  var pinboard_count = 7; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Lawrence Carvalho -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,5 +1,4 @@
 name: Push from master to Github Pages
-uses: peaceiris/actions-hugo@v2.4.12
 
 on:
   push:
@@ -14,6 +13,7 @@ jobs:
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
       - name: Read .env
         id: hugo-version
         run: |

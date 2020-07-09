@@ -1,6 +1,11 @@
 name: Push from master to Github Pages
 uses: peaceiris/actions-hugo@v2.4.12
 
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04

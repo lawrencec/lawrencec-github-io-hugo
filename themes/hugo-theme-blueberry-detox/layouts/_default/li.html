@@ -13,10 +13,11 @@
             {{ if .Site.Params.disqusShortname }}
             <a href="{{ .Permalink }}#comments"><i class="fa fa-comment"></i> Comments</a>
             {{ end }}
-            {{ with.Params.tags }}
-            	&nbsp;&nbsp;<i class="fa fa-tag"></i>
-            	{{ delimit  . ", " }}
-            {{ end }}
+            <ul class="post-tags fa fa-tag">
+                {{ range $i, $e := .Params.tags -}}
+                    <li><a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'>{{ $e | humanize }}</a></li>
+                {{- end -}}
+            </ul>
         </span>
     </footer>
 </article>

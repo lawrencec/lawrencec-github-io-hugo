@@ -831,7 +831,7 @@ article.li {
 .post-footer {
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2:px;
+    letter-spacing: 2px;
     font-size: 80%;
     margin-top: 30px
 }
@@ -847,7 +847,7 @@ article.li {
 }
 
 .post-tags li {
-    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .post-tags li:after {

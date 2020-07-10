@@ -10,3 +10,10 @@ The following serves a local build and exposes the blog at `http://localhost:131
 docker-compose up
 ```
 
+## Workflows
+
+### Github
+
+The [.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml) defines the push to github pages workflow. 
+After successful completion, a hugo build (public folder) will be pushed to the [gh-pages](https://github.com/lawrencec/lawrencec.github.com-hugo/tree/gh-pages) branch.
+

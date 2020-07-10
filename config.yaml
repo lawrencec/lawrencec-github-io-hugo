@@ -29,6 +29,7 @@ Params:
   mathjaxPath: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
   mathjaxConfig: "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
   highlightColor: "#e22d30" # Override highlight color
+  github: 'lawrencec'
   sidebar:
     home: "right" # Configure layout for home page
     list: "right"  # Configure layout for list pages

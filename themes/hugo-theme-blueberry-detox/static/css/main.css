@@ -325,7 +325,6 @@ p {
 
 a {
     color: rgb(232, 191, 54);
-    border-bottom: 1px solid;
     text-decoration: none;
     line-height: inherit;
     outline: 0;
@@ -345,7 +344,8 @@ a {
 }
 
 a:hover {
-    color: #b3b3b3
+    color: #b3b3b3;
+    border-bottom: 1px solid;
 }
 
 p a, p a:visited {

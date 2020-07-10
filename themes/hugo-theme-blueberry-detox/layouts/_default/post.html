@@ -30,7 +30,7 @@
 
                 <ul class="post-tags">
                     {{ range $i, $e := .Params.tags -}}
-                    <li><a href='{{ "/tags/" | relLangURL }}{{ . | urlize | lower }}'>{{ $e | humanize }}</a></li>
+                    <li><a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'>{{ $e | humanize }}</a></li>
                     {{- end -}}
                 </ul>
             </section>
